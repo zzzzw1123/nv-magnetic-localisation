@@ -1,0 +1,15 @@
+panel,condition,model,x,y,centre,lower,upper,interval,unit
+a,full24,MLP8,43.01619081955871,3,43.01619081955871,33.63940140826894,52.39298023084848,between-acquisition sample SD,µm
+a,without_sigma2,MLP8,43.29786862638629,2,43.29786862638629,33.374928751333876,53.220808501438704,between-acquisition sample SD,µm
+a,without_sigma1,MLP8,43.89156588287882,1,43.89156588287882,33.172138106517416,54.61099365924023,between-acquisition sample SD,µm
+a,without_peak_split,MLP8,93.54800088503433,0,93.54800088503433,71.65366385011568,115.44233791995298,between-acquisition sample SD,µm
+b,synthetic feature noise,CNN,0.0,41.741628753764665,41.741628753764665,34.63071762203029,48.571000814007576,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,CNN,1.0,41.831220312753345,41.831220312753345,34.673206748065695,48.602993275759054,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,CNN,2.0,41.8701802119302,41.8701802119302,34.809273600699015,48.60543827582742,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,CNN,5.0,42.46768014895513,42.46768014895513,35.43908214374728,49.33162060981723,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,CNN,10.0,45.48697530022702,45.48697530022702,39.26982060831111,51.71156222804818,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,MLP8,0.0,43.01619081955871,43.01619081955871,35.51357620205727,47.65194901145272,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,MLP8,1.0,43.1309920756368,43.1309920756368,35.6556018587672,47.696771891958065,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,MLP8,2.0,43.23832064328131,43.23832064328131,35.71290766262497,47.779863255982505,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,MLP8,5.0,43.73403661607713,43.73403661607713,36.05060412033919,47.718408789292866,acquisition IQR after seed averaging,µm; x is percent training-feature SD
+b,synthetic feature noise,MLP8,10.0,47.37035294345259,47.37035294345259,40.235898788880164,51.99040842648569,acquisition IQR after seed averaging,µm; x is percent training-feature SD

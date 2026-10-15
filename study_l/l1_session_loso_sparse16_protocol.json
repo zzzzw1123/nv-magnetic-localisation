@@ -1,0 +1,31 @@
+{
+  "protocol_id": "STUDY_L1_NV_SESSION_LOSO_SPARSE16_V1",
+  "frozen_before_any_session_grouped_model_metric": true,
+  "scope": "retrospective_internal_cross_acquisition_session_reanalysis_on_same_chip15",
+  "independent_unit": "acquisition_session_folder",
+  "outer_split": "leave one of eight acquisition sessions out",
+  "reference": "24D author features with inner-session-selected Ridge alpha",
+  "candidate": "16D sparse author features selected entirely inside each outer-training split",
+  "selector_families": [
+    "ridge_weight_rank",
+    "target_correlation_rank",
+    "sensor_balanced_ridge_weight_rank",
+    "sensor_balanced_target_correlation_rank"
+  ],
+  "ridge_alpha_grid": [0.01, 1.0, 100.0],
+  "inner_selection": "four-fold grouped CV by acquisition session; feature selection refit inside every inner-training fold",
+  "metrics": {
+    "primary": "equal-session mean Euclidean localization error in micrometres",
+    "secondary": "chronological same-coordinate repeat error: each later session is predicted using only earlier acquisition sessions and only coordinates already measured earlier"
+  },
+  "success_rule": {
+    "maximum_equal_session_mean_error_increase": 0.05,
+    "minimum_session_noninferiority_wins": 6,
+    "maximum_worst_session_relative_increase": 0.15,
+    "minimum_parameter_reduction": 0.30,
+    "maximum_repeat_subset_mean_error_increase": 0.05,
+    "minimum_repeat_sessions": 3
+  },
+  "claim_boundary": "passing supports internal cross-session readout compression on one chip and one unidentified target; it is not independent-array external confirmation, quantum-computing advantage or speedup",
+  "quantum_calls_before_run": 0
+}

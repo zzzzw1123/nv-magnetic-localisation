@@ -1,0 +1,176 @@
+{
+  "status": "AUTHOR_AUTHORIZED_FIXED_POSTHOC_RUN",
+  "training": {
+    "protocol_id": "STUDY_L_MATCHED_CONTROLS_POSTHOC_20260912_V1",
+    "role": "fixed post-hoc controls; no new independent validation",
+    "epochs": 3000,
+    "snapshots": [
+      1500,
+      3000
+    ],
+    "batch_size": 128,
+    "learning_rate": 0.005,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "epsilon": 1e-07,
+    "weight_decay": 0.0,
+    "initialisation": "existing architecture classes: Xavier-uniform weights, zero biases",
+    "standardisation": "training-only means and population SD (ddof=0) for all 24 inputs and 2 targets; zero SD becomes 1",
+    "batch_order": "dedicated CPU torch.Generator(seed+1), randperm each epoch; no dropped final batch",
+    "checkpoint_selection": "none; both fixed snapshots must be reported",
+    "historical_states_reused": false,
+    "frozen_L34_overwritten": false,
+    "old_failed_gate_retested_or_replaced": false,
+    "seeds_are_independent_units": false,
+    "equal_compute_or_wall_time_claim": false
+  },
+  "dataset_fingerprint": "ecaa4d4e32adf4fd6b2e1042ab45e2d088649f9e922a72f88284a990043db8e7",
+  "engine": {
+    "python": "3.9.13",
+    "numpy": "1.26.4",
+    "torch": "2.8.0+cpu",
+    "device": "cpu",
+    "intraop_threads": 1,
+    "interop_threads": 1,
+    "source_sha256": {
+      "paper\\figures\\scientific_controls_20260912\\matched_controls.py": "8d140cf629ef83ead9ceca6a8a96f59bf06788056cf8649de9d55433fb9ed72f",
+      "src\\qml_microrobot\\study_l30_author_cnn.py": "3d7b0f1ce42edbb0372321eb4027c4bd4a8246743c7c68dbb879bb694d88c49b",
+      "src\\qml_microrobot\\study_l31_compact.py": "e129d1abe402844d1835b86385782b3872524da53a4390af0ab235c2620cc53c",
+      "src\\qml_microrobot\\study_l_session.py": "449ffc341f7e4b0048597666e4cbd5d091edc36013accc35aea3d7133fee0c77",
+      "src\\qml_microrobot\\study_l_nv.py": "9c8eebe914aee89c9db49035ece3d8817675a537dcd5afb161bb1b508e5978f6"
+    }
+  },
+  "model_parameters": {
+    "cnn": 721858,
+    "mlp8": 218
+  },
+  "planned_fits": 54,
+  "snapshots_per_fit": 2,
+  "expected_prediction_rows": 12900,
+  "all_job_ids": [
+    "loao_A1_cnn_s20260804",
+    "loao_A1_mlp8_s20260804",
+    "loao_A1_cnn_s20260805",
+    "loao_A1_mlp8_s20260805",
+    "loao_A1_cnn_s20260806",
+    "loao_A1_mlp8_s20260806",
+    "loao_A2_cnn_s20260804",
+    "loao_A2_mlp8_s20260804",
+    "loao_A2_cnn_s20260805",
+    "loao_A2_mlp8_s20260805",
+    "loao_A2_cnn_s20260806",
+    "loao_A2_mlp8_s20260806",
+    "loao_A3_cnn_s20260804",
+    "loao_A3_mlp8_s20260804",
+    "loao_A3_cnn_s20260805",
+    "loao_A3_mlp8_s20260805",
+    "loao_A3_cnn_s20260806",
+    "loao_A3_mlp8_s20260806",
+    "loao_A4_cnn_s20260804",
+    "loao_A4_mlp8_s20260804",
+    "loao_A4_cnn_s20260805",
+    "loao_A4_mlp8_s20260805",
+    "loao_A4_cnn_s20260806",
+    "loao_A4_mlp8_s20260806",
+    "loao_A5_cnn_s20260804",
+    "loao_A5_mlp8_s20260804",
+    "loao_A5_cnn_s20260805",
+    "loao_A5_mlp8_s20260805",
+    "loao_A5_cnn_s20260806",
+    "loao_A5_mlp8_s20260806",
+    "loao_A6_cnn_s20260804",
+    "loao_A6_mlp8_s20260804",
+    "loao_A6_cnn_s20260805",
+    "loao_A6_mlp8_s20260805",
+    "loao_A6_cnn_s20260806",
+    "loao_A6_mlp8_s20260806",
+    "loao_A7_cnn_s20260804",
+    "loao_A7_mlp8_s20260804",
+    "loao_A7_cnn_s20260805",
+    "loao_A7_mlp8_s20260805",
+    "loao_A7_cnn_s20260806",
+    "loao_A7_mlp8_s20260806",
+    "loao_A8_cnn_s20260804",
+    "loao_A8_mlp8_s20260804",
+    "loao_A8_cnn_s20260805",
+    "loao_A8_mlp8_s20260805",
+    "loao_A8_cnn_s20260806",
+    "loao_A8_mlp8_s20260806",
+    "archive_replay_A6-A8_cnn_s20260804",
+    "archive_replay_A6-A8_mlp8_s20260804",
+    "archive_replay_A6-A8_cnn_s20260805",
+    "archive_replay_A6-A8_mlp8_s20260805",
+    "archive_replay_A6-A8_cnn_s20260806",
+    "archive_replay_A6-A8_mlp8_s20260806"
+  ],
+  "fold_rows": [
+    {
+      "evaluation": "loao",
+      "fold": "A1",
+      "train": 717,
+      "test": 102,
+      "updates_per_epoch": 6
+    },
+    {
+      "evaluation": "loao",
+      "fold": "A2",
+      "train": 715,
+      "test": 104,
+      "updates_per_epoch": 6
+    },
+    {
+      "evaluation": "loao",
+      "fold": "A3",
+      "train": 717,
+      "test": 102,
+      "updates_per_epoch": 6
+    },
+    {
+      "evaluation": "loao",
+      "fold": "A4",
+      "train": 615,
+      "test": 204,
+      "updates_per_epoch": 5
+    },
+    {
+      "evaluation": "loao",
+      "fold": "A5",
+      "train": 768,
+      "test": 51,
+      "updates_per_epoch": 6
+    },
+    {
+      "evaluation": "loao",
+      "fold": "A6",
+      "train": 767,
+      "test": 52,
+      "updates_per_epoch": 6
+    },
+    {
+      "evaluation": "loao",
+      "fold": "A7",
+      "train": 717,
+      "test": 102,
+      "updates_per_epoch": 6
+    },
+    {
+      "evaluation": "loao",
+      "fold": "A8",
+      "train": 717,
+      "test": 102,
+      "updates_per_epoch": 6
+    },
+    {
+      "evaluation": "archive_replay",
+      "fold": "A6-A8",
+      "train": 563,
+      "test": 256,
+      "updates_per_epoch": 5
+    }
+  ],
+  "claim_boundary": "Diagnostic fixed-setting architecture comparison; architecture choices and historical data were already known. No new arrays, prospectivity, formal equivalence, causal capacity attribution, or replacement of old gates.",
+  "resume": "Only complete job with identical configuration/data/code/environment and matching CSV hash; ordinary partial jobs restart from zero and are retained as interrupted artifacts. Numerical failures are terminal, retain earlier snapshots, and reject automatic retry.",
+  "timing": "Concurrent wall times are progress metadata, not resource benchmarks."
+}

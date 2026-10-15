@@ -1,0 +1,37 @@
+{
+  "protocol_id": "STUDY_L31_COMPACT_NONLINEAR_BRIDGE_V1",
+  "status": "FROZEN_BEFORE_L31_REPLAY_RESULTS",
+  "motivation": "bridge the L30 gap between the 721858-parameter CNN accuracy route and the 34-parameter Sparse16 route",
+  "development_sessions": "first five acquisition sessions in archive order",
+  "sealed_historical_replay_sessions": "last three acquisition sessions in archive order",
+  "candidate_selection": {
+    "method": "leave-one-development-session-out mean Euclidean error",
+    "test_or_replay_rows_used": false,
+    "one_um_tie_rule": "among candidates within 1 um of the minimum development CV error, select the fewest fitted parameters, then lexical candidate id"
+  },
+  "candidates": {
+    "polynomial2_ridge": {"alphas": [0.01, 1.0, 100.0], "fitted_parameters": 650},
+    "rff_ridge": {"dimensions": [64, 128], "alphas": [0.01, 1.0, 100.0], "gamma": 0.041666666666666664, "seed": 20260804},
+    "compact_mlp": {"hidden_widths": [8, 16, 32], "epochs": 1500, "batch_size": 128, "learning_rate": 0.005, "seed": 20260804}
+  },
+  "preprocessing": {
+    "fit_on_training_rows_only": true,
+    "classical_features": "StandardScaler fitted inside each fold",
+    "compact_mlp": "training-only feature and target standardization; predictions transformed back to micrometres"
+  },
+  "replay_comparators": [
+    "author_cnn_trained_on_first_five_sessions",
+    "full24_ridge_trained_on_first_five_sessions",
+    "sparse16_ridge_trained_on_first_five_sessions",
+    "development_selected_compact_nonlinear"
+  ],
+  "promotion": {
+    "maximum_compact_to_author_cnn_mean_error_ratio": 1.10,
+    "minimum_compact_session_wins_or_ties_vs_author_cnn": 2,
+    "minimum_parameter_reduction_vs_author_cnn": 0.99
+  },
+  "decision_boundary": "L26 plus L24 remains a separate 12-label calibrated route and cannot be ranked in the zero-calibration replay track",
+  "new_physical_data_collected": false,
+  "future_session_opened": false,
+  "quantum_calls": 0
+}

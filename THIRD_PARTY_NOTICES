@@ -1,0 +1,64 @@
+Weng NV-array data
+------------------
+Creator: Hao-Cheng Weng, University of Bristol.
+Source: Data/code availability for "Photonic-integrated quantum sensor array
+for microscale magnetic localisation", arXiv:2511.11496, version 1.
+DOI: https://doi.org/10.5281/zenodo.19855773
+Licence: Creative Commons Attribution 4.0 International (CC BY 4.0).
+Licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Four NumPy arrays in study_l/sources/l1_selective/ are extracted, byte-identical
+members of the source release. Their filenames have local identifier prefixes;
+results/study_l_l1_selective_inventory.csv records the original archive members
+and checksums. The source archive is not bundled in full. Acquisition metadata
+and log-transformed features are derived by the included data loaders. Result
+tables and predictions were generated for this study; they are not the source
+authors' published model outputs.
+
+Meneses elevator data
+---------------------
+Source: Fernando Meneses et al., ML_QDM_Meneses_et_al.
+Repository: https://github.com/Fertmeneses/ML_QDM_Meneses_et_al
+Commit: 7e8a78a33078a1479fe66b9c73bf3c6d7e14ca02
+Original licence: LICENSE.txt at the commit above (MIT).
+
+The five phys_model_data_zAut_segm*.csv files in
+paper/figures/scientific_controls_20260912/meneses_data/ are byte-identical
+copies of the source Data/ files. Window selection and model predictions were
+generated for this study. No source code or figures from that repository are
+bundled. The original licence is reproduced below.
+
+MIT License
+
+Copyright (c) 2024 Fernando Meneses
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Project code and derived data
+------------------------
+LICENSE covers this project's code. Project-generated predictions, summaries,
+figure source tables, fitted model states and derived feature arrays are
+licensed under CC BY 4.0, copyright 2026 Haowen Zhu.
+Licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+These licences do not replace either source data licence. The release manifest
+distinguishes source measurements, derived data, fitted model states and
+project-generated experiment records. When reusing results derived from Weng
+or Meneses measurements, acknowledge the original dataset as well as this
+analysis and describe any further changes.

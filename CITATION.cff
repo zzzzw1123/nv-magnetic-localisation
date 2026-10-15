@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite this software version when reusing the code or derived results, and acknowledge the original datasets."
+type: software
+title: "NV magnetic-localisation benchmarks"
+authors:
+  - family-names: Zhu
+    given-names: Haowen
+version: 1.0.0
+date-released: 2026-10-16
+repository-code: "https://github.com/zzzzw1123/nv-magnetic-localisation"
+url: "https://github.com/zzzzw1123/nv-magnetic-localisation/releases/tag/v1.0.0"
+license: MIT

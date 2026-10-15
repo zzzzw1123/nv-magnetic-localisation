@@ -1,0 +1,94 @@
+{
+  "status": "COMPLETE_FIXED_POSTHOC_CONTROLS_NOT_INDEPENDENT_VALIDATION",
+  "planned_fits": 54,
+  "snapshots_per_fit": 2,
+  "prediction_rows": 12900,
+  "all_batch_sequence_pairs_equal": true,
+  "all_budgets_reported": [
+    1500,
+    3000
+  ],
+  "summaries": [
+    {
+      "evaluation": "loao",
+      "epoch": 1500,
+      "model": "cnn",
+      "acquisitions": 8,
+      "seeds_per_acquisition": 3,
+      "equal_acquisition_mean_error_um": 46.90712060274058,
+      "acquisition_sd_um": 11.687876969749487
+    },
+    {
+      "evaluation": "loao",
+      "epoch": 1500,
+      "model": "mlp8",
+      "acquisitions": 8,
+      "seeds_per_acquisition": 3,
+      "equal_acquisition_mean_error_um": 43.01619081955871,
+      "acquisition_sd_um": 9.376789411289774
+    },
+    {
+      "evaluation": "loao",
+      "epoch": 3000,
+      "model": "cnn",
+      "acquisitions": 8,
+      "seeds_per_acquisition": 3,
+      "equal_acquisition_mean_error_um": 49.58992522761895,
+      "acquisition_sd_um": 12.047957903465061
+    },
+    {
+      "evaluation": "loao",
+      "epoch": 3000,
+      "model": "mlp8",
+      "acquisitions": 8,
+      "seeds_per_acquisition": 3,
+      "equal_acquisition_mean_error_um": 43.50418255866229,
+      "acquisition_sd_um": 9.929578476266249
+    },
+    {
+      "evaluation": "archive_replay",
+      "epoch": 1500,
+      "model": "cnn",
+      "acquisitions": 3,
+      "seeds_per_acquisition": 3,
+      "equal_acquisition_mean_error_um": 75.90059646676096,
+      "acquisition_sd_um": 6.258290444491881
+    },
+    {
+      "evaluation": "archive_replay",
+      "epoch": 1500,
+      "model": "mlp8",
+      "acquisitions": 3,
+      "seeds_per_acquisition": 3,
+      "equal_acquisition_mean_error_um": 75.42055907444426,
+      "acquisition_sd_um": 10.108347782675622
+    },
+    {
+      "evaluation": "archive_replay",
+      "epoch": 3000,
+      "model": "cnn",
+      "acquisitions": 3,
+      "seeds_per_acquisition": 3,
+      "equal_acquisition_mean_error_um": 78.0849295221231,
+      "acquisition_sd_um": 12.618916820278994
+    },
+    {
+      "evaluation": "archive_replay",
+      "epoch": 3000,
+      "model": "mlp8",
+      "acquisitions": 3,
+      "seeds_per_acquisition": 3,
+      "equal_acquisition_mean_error_um": 75.62760552021977,
+      "acquisition_sd_um": 11.905154125600733
+    }
+  ],
+  "legacy_mlp8_1500_sanity": {
+    "purpose": "comparison only; no state reused or outcome selected",
+    "rows": 2457,
+    "maximum_coordinate_difference_um": 0.0,
+    "exact_coordinate_match": true
+  },
+  "old_L34_results_unchanged_by_this_script": true,
+  "failed_historical_gate_replaced": false,
+  "completed_utc": "2026-09-11T18:39:26.961099+00:00"
+}

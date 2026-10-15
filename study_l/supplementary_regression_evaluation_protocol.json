@@ -1,0 +1,41 @@
+{
+  "protocol_id": "STUDY_L_SUPPLEMENTARY_REGRESSION_EVALUATION",
+  "status": "FROZEN_BEFORE_SUPPLEMENTARY_RESULTS",
+  "scope": "released_single_array_nv_localisation_dataset_only",
+  "frozen_primary_models_unchanged": true,
+  "external_generalisation_claim_allowed": false,
+  "classification_probability_analysis_applicable": false,
+  "experiments": {
+    "training_dynamics": {
+      "split": "source_90_7_3",
+      "models": ["architecture_matched_cnn", "mlp8"],
+      "schedules": ["fixed_lr_0.005", "cosine_annealing"],
+      "log_every_epochs": 10,
+      "test_used_for_selection": false
+    },
+    "feature_ablation": {
+      "model": "mlp8",
+      "evaluation": "eight_session_loso",
+      "seeds": [20260804, 20260805, 20260806],
+      "variants": ["full24", "without_peak_split", "without_sigma1", "without_sigma2"]
+    },
+    "synthetic_feature_noise": {
+      "models": ["architecture_matched_cnn", "mlp8"],
+      "evaluation": "eight_session_loso",
+      "seeds": [20260804, 20260805, 20260806],
+      "standardised_noise_sigma": [0.0, 0.01, 0.02, 0.05, 0.1],
+      "hardware_noise_claim_allowed": false
+    },
+    "residual_diagnostics": {
+      "models": ["architecture_matched_cnn", "mlp8"],
+      "evaluation": "eight_session_loso",
+      "store_per_sample_predictions": true,
+      "independent_unit": "acquisition_session"
+    },
+    "candidate_frontier": {
+      "source": "results/study_l31_compact_candidate_cv.csv",
+      "development_only": true
+    }
+  },
+  "quantum_calls": 0
+}

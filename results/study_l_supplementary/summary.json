@@ -1,0 +1,20 @@
+{
+  "protocol": "study_l/supplementary_regression_evaluation_protocol.json",
+  "status": "SUPPLEMENTARY_REGRESSION_EVALUATION_COMPLETE",
+  "outputs": [
+    "candidate_frontier_summary.csv",
+    "feature_ablation_rows.csv",
+    "feature_ablation_summary.csv",
+    "loso_sample_predictions.csv",
+    "paired_sample_errors.csv",
+    "residual_summary.csv",
+    "synthetic_feature_noise_rows.csv",
+    "synthetic_feature_noise_summary.csv",
+    "training_dynamics_rows.csv",
+    "training_dynamics_summary.csv"
+  ],
+  "primary_model_selection_changed": false,
+  "classification_probability_analysis_run": false,
+  "external_generalisation_claim_allowed": false,
+  "quantum_calls": 0
+}

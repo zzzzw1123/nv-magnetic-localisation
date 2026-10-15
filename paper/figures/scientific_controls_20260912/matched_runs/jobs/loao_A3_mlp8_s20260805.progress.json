@@ -1,0 +1,12 @@
+{
+  "status": "complete",
+  "job_hash": "cdf398d52a94d65ebca82af48af02a937a1388350e1111e733747b0b1e976387",
+  "last_snapshot": {
+    "epoch": 3000,
+    "optimizer_updates": 18000,
+    "batch_order_sha256": "372dcf53b4a0801e67daeb66e87d44f3f1d20b4d05c3b432450b74db32ba5159",
+    "standardised_training_mse": 0.016720909625291824,
+    "concurrent_fit_wall_sec_not_resource_benchmark": 10.563298999999915
+  },
+  "prediction_csv_sha256": "385ddefae1cbf3867754472bb1b87a84f282c8e0471cca8cdc1442f52b094c61"
+}

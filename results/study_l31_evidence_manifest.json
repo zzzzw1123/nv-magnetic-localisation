@@ -1,0 +1,67 @@
+{
+  "status": "L31_COMPACT_NONLINEAR_BRIDGE_EVIDENCE_FROZEN",
+  "entries": [
+    {
+      "path": "study_l/l31_compact_nonlinear_bridge_protocol.json",
+      "bytes": 1965,
+      "sha256": "e439a7e7a3c0ea8ceb6258e02f7f0c33804cfa58ec58c290075613f6eb93bad3"
+    },
+    {
+      "path": "src/qml_microrobot/study_l31_compact.py",
+      "bytes": 5153,
+      "sha256": "e129d1abe402844d1835b86385782b3872524da53a4390af0ab235c2620cc53c"
+    },
+    {
+      "path": "scripts/run_study_l31_compact_nonlinear_bridge.py",
+      "bytes": 16048,
+      "sha256": "ec4ebf5221a79df40ae632515e23b5a8433074fc8a9a09a545ff85fa37820809"
+    },
+    {
+      "path": "tests/test_study_l31_compact.py",
+      "bytes": 2503,
+      "sha256": "70798e5fbc6cb96f8302ddbc22d4eafe6ffcc7f6194341922f5cbcb732832584"
+    },
+    {
+      "path": "docs/study_l31_compact_nonlinear_bridge.md",
+      "bytes": 704,
+      "sha256": "c26bff3c021e77c20923637a9134207d6eb7b2005165ade559580255fd99db61"
+    },
+    {
+      "path": "results/study_l31_compact_candidate_cv.csv",
+      "bytes": 5761,
+      "sha256": "1cb8e74d21da2f25d9ebcefc35e04fc8f733d16df72a33178cbcb213fea60355"
+    },
+    {
+      "path": "results/study_l31_compact_replay_rows.csv",
+      "bytes": 583,
+      "sha256": "9d9055400ced873e461e97b551252d4aca1d6406f5cab4cb0fac7615cd8992ba"
+    },
+    {
+      "path": "results/study_l31_compact_resource.csv",
+      "bytes": 246,
+      "sha256": "11e13a6e630c6e3eb9eaecdd72bb39fbacd223c8cc31029cd9bd90eb58f43b49"
+    },
+    {
+      "path": "results/study_l31_compact_nonlinear_bridge_result.json",
+      "bytes": 2993,
+      "sha256": "f43f5e4674f7abc2e853a542e03a6229cc7783d47ba6e7dcb8361a5727ba58fd"
+    },
+    {
+      "path": "checkpoints/study_l31_author_first5.pt",
+      "bytes": 2891711,
+      "sha256": "50f40ae12a7d46aa7db132fccef6a4b6b445c841ed517752a8d65c6b917da508"
+    },
+    {
+      "path": "checkpoints/study_l31_author_first5.json",
+      "bytes": 443,
+      "sha256": "3b1e8b34a92eff94d4c81e3528fc091654a3978655ca95200a824d015af597ac"
+    },
+    {
+      "path": "checkpoints/study_l31_selected_compact.pkl",
+      "bytes": 4051,
+      "sha256": "bbe58dd0e7518f63511dcbc00449ab01a29e1eefc66fbfcbebda7e18d2826af6"
+    }
+  ],
+  "future_session_opened": false,
+  "quantum_calls": 0
+}

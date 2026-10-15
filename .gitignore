@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+outputs/
+.env
+.env.*
+paper/figures/scientific_controls_20260912/meneses_full.csv
+paper/figures/scientific_controls_20260912/recipe_additional.csv

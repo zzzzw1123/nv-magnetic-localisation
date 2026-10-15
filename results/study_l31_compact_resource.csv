@@ -1,0 +1,5 @@
+model,fitted_parameters,fit_wall_sec,serialized_state_bytes
+author_cnn_first5,721858,441.86527390000003,2891711
+mlp8_fixed,218,3.1824458000000035,4317
+full24_ridge,50,not_benchmarked_in_l31,1694
+sparse16_ridge,34,not_benchmarked_in_l31,1374

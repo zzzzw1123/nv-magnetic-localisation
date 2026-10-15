@@ -1,0 +1,1607 @@
+{
+  "status": "COMPLETED_FIVE_ISOLATED_PROCESSES_PER_FITTED_MODEL",
+  "started_utc": "2026-09-11T17:02:16.999095+00:00",
+  "completed_utc": "2026-09-11T17:04:30.700137+00:00",
+  "protocol": {
+    "models": [
+      "cnn",
+      "mlp8"
+    ],
+    "repeats": 5,
+    "batch_order": [
+      1,
+      256
+    ],
+    "warmup_inferences_per_batch": 50,
+    "measured_workload_inferences_per_batch": 100,
+    "steady_snapshots": 5,
+    "snapshot_interval_sec": 0.04,
+    "MiB_definition": 1048576,
+    "model_training_performed": false,
+    "order": "Odd repetitions CNN then MLP8; even repetitions MLP8 then CNN",
+    "baseline": "Same imports, 256-row feature array and generic 8x8 matrix multiplication warmup",
+    "peak_definition": "OS process-lifetime peak, including runtime/imports/load/prior stages; not model-only peak.",
+    "increments": "Raw differences from within-process runtime baseline medians; signed allocator variation retained.",
+    "batch_dependency": "Batch256 follows batch1 in the same fresh process; phase peaks are cumulative, not independent batch peaks."
+  },
+  "summary": [
+    {
+      "model": "cnn",
+      "stage": "runtime_baseline",
+      "independent_process_repeats": 5,
+      "snapshots_per_stage_per_process": 5,
+      "rss_bytes": {
+        "per_repeat_medians": [
+          279769088,
+          279973888,
+          280211456,
+          280035328,
+          279617536
+        ],
+        "median": 279973888,
+        "min": 279617536,
+        "max": 280211456
+      },
+      "rss_MiB": {
+        "per_repeat_medians": [
+          266.80859375,
+          267.00390625,
+          267.23046875,
+          267.0625,
+          266.6640625
+        ],
+        "median": 267.00390625,
+        "min": 266.6640625,
+        "max": 267.23046875
+      },
+      "private_commit_bytes": {
+        "per_repeat_medians": [
+          272707584,
+          272965632,
+          273047552,
+          273223680,
+          272637952
+        ],
+        "median": 272965632,
+        "min": 272637952,
+        "max": 273223680
+      },
+      "private_commit_MiB": {
+        "per_repeat_medians": [
+          260.07421875,
+          260.3203125,
+          260.3984375,
+          260.56640625,
+          260.0078125
+        ],
+        "median": 260.3203125,
+        "min": 260.0078125,
+        "max": 260.56640625
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "per_repeat_medians": [
+          279769088,
+          279973888,
+          280211456,
+          280035328,
+          279617536
+        ],
+        "median": 279973888,
+        "min": 279617536,
+        "max": 280211456
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "per_repeat_medians": [
+          266.80859375,
+          267.00390625,
+          267.23046875,
+          267.0625,
+          266.6640625
+        ],
+        "median": 267.00390625,
+        "min": 266.6640625,
+        "max": 267.23046875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "per_repeat_medians": [
+          272707584,
+          272965632,
+          273047552,
+          273223680,
+          272637952
+        ],
+        "median": 272965632,
+        "min": 272637952,
+        "max": 273223680
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "per_repeat_medians": [
+          260.07421875,
+          260.3203125,
+          260.3984375,
+          260.56640625,
+          260.0078125
+        ],
+        "median": 260.3203125,
+        "min": 260.0078125,
+        "max": 260.56640625
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "model": "cnn",
+      "stage": "model_loaded",
+      "independent_process_repeats": 5,
+      "snapshots_per_stage_per_process": 5,
+      "rss_bytes": {
+        "per_repeat_medians": [
+          286490624,
+          286691328,
+          286937088,
+          286863360,
+          286355456
+        ],
+        "median": 286691328,
+        "min": 286355456,
+        "max": 286937088
+      },
+      "rss_MiB": {
+        "per_repeat_medians": [
+          273.21875,
+          273.41015625,
+          273.64453125,
+          273.57421875,
+          273.08984375
+        ],
+        "median": 273.41015625,
+        "min": 273.08984375,
+        "max": 273.64453125
+      },
+      "private_commit_bytes": {
+        "per_repeat_medians": [
+          272752640,
+          273010688,
+          273104896,
+          273379328,
+          272683008
+        ],
+        "median": 273010688,
+        "min": 272683008,
+        "max": 273379328
+      },
+      "private_commit_MiB": {
+        "per_repeat_medians": [
+          260.1171875,
+          260.36328125,
+          260.453125,
+          260.71484375,
+          260.05078125
+        ],
+        "median": 260.36328125,
+        "min": 260.05078125,
+        "max": 260.71484375
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "per_repeat_medians": [
+          286490624,
+          286691328,
+          286937088,
+          286863360,
+          286355456
+        ],
+        "median": 286691328,
+        "min": 286355456,
+        "max": 286937088
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "per_repeat_medians": [
+          273.21875,
+          273.41015625,
+          273.64453125,
+          273.57421875,
+          273.08984375
+        ],
+        "median": 273.41015625,
+        "min": 273.08984375,
+        "max": 273.64453125
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "per_repeat_medians": [
+          275640320,
+          275922944,
+          275976192,
+          276185088,
+          275554304
+        ],
+        "median": 275922944,
+        "min": 275554304,
+        "max": 276185088
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "per_repeat_medians": [
+          262.87109375,
+          263.140625,
+          263.19140625,
+          263.390625,
+          262.7890625
+        ],
+        "median": 263.140625,
+        "min": 262.7890625,
+        "max": 263.390625
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          6721536,
+          6717440,
+          6725632,
+          6828032,
+          6737920
+        ],
+        "median": 6725632,
+        "min": 6717440,
+        "max": 6828032
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          6.41015625,
+          6.40625,
+          6.4140625,
+          6.51171875,
+          6.42578125
+        ],
+        "median": 6.4140625,
+        "min": 6.40625,
+        "max": 6.51171875
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          45056,
+          45056,
+          57344,
+          155648,
+          45056
+        ],
+        "median": 45056,
+        "min": 45056,
+        "max": 155648
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.04296875,
+          0.04296875,
+          0.0546875,
+          0.1484375,
+          0.04296875
+        ],
+        "median": 0.04296875,
+        "min": 0.04296875,
+        "max": 0.1484375
+      }
+    },
+    {
+      "model": "cnn",
+      "stage": "post_batch_1",
+      "independent_process_repeats": 5,
+      "snapshots_per_stage_per_process": 5,
+      "rss_bytes": {
+        "per_repeat_medians": [
+          287543296,
+          287744000,
+          287989760,
+          287932416,
+          287408128
+        ],
+        "median": 287744000,
+        "min": 287408128,
+        "max": 287989760
+      },
+      "rss_MiB": {
+        "per_repeat_medians": [
+          274.22265625,
+          274.4140625,
+          274.6484375,
+          274.59375,
+          274.09375
+        ],
+        "median": 274.4140625,
+        "min": 274.09375,
+        "max": 274.6484375
+      },
+      "private_commit_bytes": {
+        "per_repeat_medians": [
+          272752640,
+          273010688,
+          273104896,
+          273399808,
+          272683008
+        ],
+        "median": 273010688,
+        "min": 272683008,
+        "max": 273399808
+      },
+      "private_commit_MiB": {
+        "per_repeat_medians": [
+          260.1171875,
+          260.36328125,
+          260.453125,
+          260.734375,
+          260.05078125
+        ],
+        "median": 260.36328125,
+        "min": 260.05078125,
+        "max": 260.734375
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "per_repeat_medians": [
+          287543296,
+          287744000,
+          287989760,
+          287932416,
+          287408128
+        ],
+        "median": 287744000,
+        "min": 287408128,
+        "max": 287989760
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "per_repeat_medians": [
+          274.22265625,
+          274.4140625,
+          274.6484375,
+          274.59375,
+          274.09375
+        ],
+        "median": 274.4140625,
+        "min": 274.09375,
+        "max": 274.6484375
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "per_repeat_medians": [
+          275640320,
+          275922944,
+          275976192,
+          276185088,
+          275554304
+        ],
+        "median": 275922944,
+        "min": 275554304,
+        "max": 276185088
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "per_repeat_medians": [
+          262.87109375,
+          263.140625,
+          263.19140625,
+          263.390625,
+          262.7890625
+        ],
+        "median": 263.140625,
+        "min": 262.7890625,
+        "max": 263.390625
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          7774208,
+          7770112,
+          7778304,
+          7897088,
+          7790592
+        ],
+        "median": 7778304,
+        "min": 7770112,
+        "max": 7897088
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          7.4140625,
+          7.41015625,
+          7.41796875,
+          7.53125,
+          7.4296875
+        ],
+        "median": 7.41796875,
+        "min": 7.41015625,
+        "max": 7.53125
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          45056,
+          45056,
+          57344,
+          176128,
+          45056
+        ],
+        "median": 45056,
+        "min": 45056,
+        "max": 176128
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.04296875,
+          0.04296875,
+          0.0546875,
+          0.16796875,
+          0.04296875
+        ],
+        "median": 0.04296875,
+        "min": 0.04296875,
+        "max": 0.16796875
+      }
+    },
+    {
+      "model": "cnn",
+      "stage": "post_batch_256",
+      "independent_process_repeats": 5,
+      "snapshots_per_stage_per_process": 5,
+      "rss_bytes": {
+        "per_repeat_medians": [
+          290123776,
+          290299904,
+          290680832,
+          310939648,
+          310448128
+        ],
+        "median": 290680832,
+        "min": 290123776,
+        "max": 310939648
+      },
+      "rss_MiB": {
+        "per_repeat_medians": [
+          276.68359375,
+          276.8515625,
+          277.21484375,
+          296.53515625,
+          296.06640625
+        ],
+        "median": 277.21484375,
+        "min": 276.68359375,
+        "max": 296.53515625
+      },
+      "private_commit_bytes": {
+        "per_repeat_medians": [
+          254980096,
+          255213568,
+          255434752,
+          277635072,
+          276963328
+        ],
+        "median": 255434752,
+        "min": 254980096,
+        "max": 277635072
+      },
+      "private_commit_MiB": {
+        "per_repeat_medians": [
+          243.16796875,
+          243.390625,
+          243.6015625,
+          264.7734375,
+          264.1328125
+        ],
+        "median": 243.6015625,
+        "min": 243.16796875,
+        "max": 264.7734375
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "per_repeat_medians": [
+          312143872,
+          312320000,
+          312700928,
+          312971264,
+          312020992
+        ],
+        "median": 312320000,
+        "min": 312020992,
+        "max": 312971264
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "per_repeat_medians": [
+          297.68359375,
+          297.8515625,
+          298.21484375,
+          298.47265625,
+          297.56640625
+        ],
+        "median": 297.8515625,
+        "min": 297.56640625,
+        "max": 298.47265625
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "per_repeat_medians": [
+          278745088,
+          278978560,
+          279199744,
+          282488832,
+          278671360
+        ],
+        "median": 278978560,
+        "min": 278671360,
+        "max": 282488832
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "per_repeat_medians": [
+          265.83203125,
+          266.0546875,
+          266.265625,
+          269.40234375,
+          265.76171875
+        ],
+        "median": 266.0546875,
+        "min": 265.76171875,
+        "max": 269.40234375
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          10354688,
+          10326016,
+          10469376,
+          30904320,
+          30830592
+        ],
+        "median": 10469376,
+        "min": 10326016,
+        "max": 30904320
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          9.875,
+          9.84765625,
+          9.984375,
+          29.47265625,
+          29.40234375
+        ],
+        "median": 9.984375,
+        "min": 9.84765625,
+        "max": 29.47265625
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          -17727488,
+          -17752064,
+          -17612800,
+          4411392,
+          4325376
+        ],
+        "median": -17612800,
+        "min": -17752064,
+        "max": 4411392
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          -16.90625,
+          -16.9296875,
+          -16.796875,
+          4.20703125,
+          4.125
+        ],
+        "median": -16.796875,
+        "min": -16.9296875,
+        "max": 4.20703125
+      }
+    },
+    {
+      "model": "mlp8",
+      "stage": "runtime_baseline",
+      "independent_process_repeats": 5,
+      "snapshots_per_stage_per_process": 5,
+      "rss_bytes": {
+        "per_repeat_medians": [
+          280723456,
+          280403968,
+          280150016,
+          279633920,
+          280457216
+        ],
+        "median": 280403968,
+        "min": 279633920,
+        "max": 280723456
+      },
+      "rss_MiB": {
+        "per_repeat_medians": [
+          267.71875,
+          267.4140625,
+          267.171875,
+          266.6796875,
+          267.46484375
+        ],
+        "median": 267.4140625,
+        "min": 266.6796875,
+        "max": 267.71875
+      },
+      "private_commit_bytes": {
+        "per_repeat_medians": [
+          273657856,
+          273436672,
+          273014784,
+          272392192,
+          273227776
+        ],
+        "median": 273227776,
+        "min": 272392192,
+        "max": 273657856
+      },
+      "private_commit_MiB": {
+        "per_repeat_medians": [
+          260.98046875,
+          260.76953125,
+          260.3671875,
+          259.7734375,
+          260.5703125
+        ],
+        "median": 260.5703125,
+        "min": 259.7734375,
+        "max": 260.98046875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "per_repeat_medians": [
+          280723456,
+          280403968,
+          280150016,
+          279633920,
+          280457216
+        ],
+        "median": 280403968,
+        "min": 279633920,
+        "max": 280723456
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "per_repeat_medians": [
+          267.71875,
+          267.4140625,
+          267.171875,
+          266.6796875,
+          267.46484375
+        ],
+        "median": 267.4140625,
+        "min": 266.6796875,
+        "max": 267.71875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "per_repeat_medians": [
+          273657856,
+          273436672,
+          273014784,
+          272392192,
+          273227776
+        ],
+        "median": 273227776,
+        "min": 272392192,
+        "max": 273657856
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "per_repeat_medians": [
+          260.98046875,
+          260.76953125,
+          260.3671875,
+          259.7734375,
+          260.5703125
+        ],
+        "median": 260.5703125,
+        "min": 259.7734375,
+        "max": 260.98046875
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "model": "mlp8",
+      "stage": "model_loaded",
+      "independent_process_repeats": 5,
+      "snapshots_per_stage_per_process": 5,
+      "rss_bytes": {
+        "per_repeat_medians": [
+          281436160,
+          280969216,
+          280739840,
+          280199168,
+          280920064
+        ],
+        "median": 280920064,
+        "min": 280199168,
+        "max": 281436160
+      },
+      "rss_MiB": {
+        "per_repeat_medians": [
+          268.3984375,
+          267.953125,
+          267.734375,
+          267.21875,
+          267.90625
+        ],
+        "median": 267.90625,
+        "min": 267.21875,
+        "max": 268.3984375
+      },
+      "private_commit_bytes": {
+        "per_repeat_medians": [
+          273928192,
+          273571840,
+          273149952,
+          272527360,
+          273227776
+        ],
+        "median": 273227776,
+        "min": 272527360,
+        "max": 273928192
+      },
+      "private_commit_MiB": {
+        "per_repeat_medians": [
+          261.23828125,
+          260.8984375,
+          260.49609375,
+          259.90234375,
+          260.5703125
+        ],
+        "median": 260.5703125,
+        "min": 259.90234375,
+        "max": 261.23828125
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "per_repeat_medians": [
+          281436160,
+          280969216,
+          280739840,
+          280199168,
+          280920064
+        ],
+        "median": 280920064,
+        "min": 280199168,
+        "max": 281436160
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "per_repeat_medians": [
+          268.3984375,
+          267.953125,
+          267.734375,
+          267.21875,
+          267.90625
+        ],
+        "median": 267.90625,
+        "min": 267.21875,
+        "max": 268.3984375
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "per_repeat_medians": [
+          273928192,
+          273571840,
+          273149952,
+          272527360,
+          273227776
+        ],
+        "median": 273227776,
+        "min": 272527360,
+        "max": 273928192
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "per_repeat_medians": [
+          261.23828125,
+          260.8984375,
+          260.49609375,
+          259.90234375,
+          260.5703125
+        ],
+        "median": 260.5703125,
+        "min": 259.90234375,
+        "max": 261.23828125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          712704,
+          565248,
+          589824,
+          565248,
+          462848
+        ],
+        "median": 565248,
+        "min": 462848,
+        "max": 712704
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.6796875,
+          0.5390625,
+          0.5625,
+          0.5390625,
+          0.44140625
+        ],
+        "median": 0.5390625,
+        "min": 0.44140625,
+        "max": 0.6796875
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          270336,
+          135168,
+          135168,
+          135168,
+          0
+        ],
+        "median": 135168,
+        "min": 0,
+        "max": 270336
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.2578125,
+          0.12890625,
+          0.12890625,
+          0.12890625,
+          0.0
+        ],
+        "median": 0.12890625,
+        "min": 0.0,
+        "max": 0.2578125
+      }
+    },
+    {
+      "model": "mlp8",
+      "stage": "post_batch_1",
+      "independent_process_repeats": 5,
+      "snapshots_per_stage_per_process": 5,
+      "rss_bytes": {
+        "per_repeat_medians": [
+          282112000,
+          281640960,
+          281411584,
+          280875008,
+          281587712
+        ],
+        "median": 281587712,
+        "min": 280875008,
+        "max": 282112000
+      },
+      "rss_MiB": {
+        "per_repeat_medians": [
+          269.04296875,
+          268.59375,
+          268.375,
+          267.86328125,
+          268.54296875
+        ],
+        "median": 268.54296875,
+        "min": 267.86328125,
+        "max": 269.04296875
+      },
+      "private_commit_bytes": {
+        "per_repeat_medians": [
+          273928192,
+          273571840,
+          273149952,
+          272527360,
+          273227776
+        ],
+        "median": 273227776,
+        "min": 272527360,
+        "max": 273928192
+      },
+      "private_commit_MiB": {
+        "per_repeat_medians": [
+          261.23828125,
+          260.8984375,
+          260.49609375,
+          259.90234375,
+          260.5703125
+        ],
+        "median": 260.5703125,
+        "min": 259.90234375,
+        "max": 261.23828125
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "per_repeat_medians": [
+          282112000,
+          281640960,
+          281411584,
+          280875008,
+          281587712
+        ],
+        "median": 281587712,
+        "min": 280875008,
+        "max": 282112000
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "per_repeat_medians": [
+          269.04296875,
+          268.59375,
+          268.375,
+          267.86328125,
+          268.54296875
+        ],
+        "median": 268.54296875,
+        "min": 267.86328125,
+        "max": 269.04296875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "per_repeat_medians": [
+          273928192,
+          273571840,
+          273149952,
+          272527360,
+          273227776
+        ],
+        "median": 273227776,
+        "min": 272527360,
+        "max": 273928192
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "per_repeat_medians": [
+          261.23828125,
+          260.8984375,
+          260.49609375,
+          259.90234375,
+          260.5703125
+        ],
+        "median": 260.5703125,
+        "min": 259.90234375,
+        "max": 261.23828125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          1388544,
+          1236992,
+          1261568,
+          1241088,
+          1130496
+        ],
+        "median": 1241088,
+        "min": 1130496,
+        "max": 1388544
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          1.32421875,
+          1.1796875,
+          1.203125,
+          1.18359375,
+          1.078125
+        ],
+        "median": 1.18359375,
+        "min": 1.078125,
+        "max": 1.32421875
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          270336,
+          135168,
+          135168,
+          135168,
+          0
+        ],
+        "median": 135168,
+        "min": 0,
+        "max": 270336
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.2578125,
+          0.12890625,
+          0.12890625,
+          0.12890625,
+          0.0
+        ],
+        "median": 0.12890625,
+        "min": 0.0,
+        "max": 0.2578125
+      }
+    },
+    {
+      "model": "mlp8",
+      "stage": "post_batch_256",
+      "independent_process_repeats": 5,
+      "snapshots_per_stage_per_process": 5,
+      "rss_bytes": {
+        "per_repeat_medians": [
+          282439680,
+          281968640,
+          281739264,
+          281202688,
+          281907200
+        ],
+        "median": 281907200,
+        "min": 281202688,
+        "max": 282439680
+      },
+      "rss_MiB": {
+        "per_repeat_medians": [
+          269.35546875,
+          268.90625,
+          268.6875,
+          268.17578125,
+          268.84765625
+        ],
+        "median": 268.84765625,
+        "min": 268.17578125,
+        "max": 269.35546875
+      },
+      "private_commit_bytes": {
+        "per_repeat_medians": [
+          274092032,
+          273731584,
+          273309696,
+          272687104,
+          273387520
+        ],
+        "median": 273387520,
+        "min": 272687104,
+        "max": 274092032
+      },
+      "private_commit_MiB": {
+        "per_repeat_medians": [
+          261.39453125,
+          261.05078125,
+          260.6484375,
+          260.0546875,
+          260.72265625
+        ],
+        "median": 260.72265625,
+        "min": 260.0546875,
+        "max": 261.39453125
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "per_repeat_medians": [
+          282439680,
+          281968640,
+          281739264,
+          281202688,
+          281907200
+        ],
+        "median": 281907200,
+        "min": 281202688,
+        "max": 282439680
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "per_repeat_medians": [
+          269.35546875,
+          268.90625,
+          268.6875,
+          268.17578125,
+          268.84765625
+        ],
+        "median": 268.84765625,
+        "min": 268.17578125,
+        "max": 269.35546875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "per_repeat_medians": [
+          274092032,
+          273731584,
+          273309696,
+          272687104,
+          273387520
+        ],
+        "median": 273387520,
+        "min": 272687104,
+        "max": 274092032
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "per_repeat_medians": [
+          261.39453125,
+          261.05078125,
+          260.6484375,
+          260.0546875,
+          260.72265625
+        ],
+        "median": 260.72265625,
+        "min": 260.0546875,
+        "max": 261.39453125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          1716224,
+          1564672,
+          1589248,
+          1568768,
+          1449984
+        ],
+        "median": 1568768,
+        "min": 1449984,
+        "max": 1716224
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          1.63671875,
+          1.4921875,
+          1.515625,
+          1.49609375,
+          1.3828125
+        ],
+        "median": 1.49609375,
+        "min": 1.3828125,
+        "max": 1.63671875
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "per_repeat_medians": [
+          434176,
+          294912,
+          294912,
+          294912,
+          159744
+        ],
+        "median": 294912,
+        "min": 159744,
+        "max": 434176
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "per_repeat_medians": [
+          0.4140625,
+          0.28125,
+          0.28125,
+          0.28125,
+          0.15234375
+        ],
+        "median": 0.28125,
+        "min": 0.15234375,
+        "max": 0.4140625
+      }
+    }
+  ],
+  "runtime": {
+    "python": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+    "torch": "2.8.0+cpu",
+    "numpy": "1.26.4",
+    "sklearn": "1.6.1",
+    "psutil": "7.2.2",
+    "torch_threads": 1,
+    "torch_interop_threads": 1,
+    "process_threads_at_end": 4,
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "physical_memory_bytes": 34141495296
+  },
+  "input_provenance": {
+    "status": "FITTED_CHECKPOINTS_REPLAY_VALIDATED",
+    "source_sha256": {
+      "checkpoints/study_l31_author_first5.pt": "50f40ae12a7d46aa7db132fccef6a4b6b445c841ed517752a8d65c6b917da508",
+      "checkpoints/study_l31_selected_compact.pkl": "bbe58dd0e7518f63511dcbc00449ab01a29e1eefc66fbfcbebda7e18d2826af6",
+      "checkpoints/study_l31_author_first5.json": "3b1e8b34a92eff94d4c81e3528fc091654a3978655ca95200a824d015af597ac",
+      "src/qml_microrobot/study_l31_compact.py": "e129d1abe402844d1835b86385782b3872524da53a4390af0ab235c2620cc53c",
+      "scripts/run_study_l31_compact_nonlinear_bridge.py": "ec4ebf5221a79df40ae632515e23b5a8433074fc8a9a09a545ff85fa37820809",
+      "results/study_l31_compact_replay_rows.csv": "9d9055400ced873e461e97b551252d4aca1d6406f5cab4cb0fac7615cd8992ba",
+      "results/study_l31_compact_resource.csv": "11e13a6e630c6e3eb9eaecdd72bb39fbacd223c8cc31029cd9bd90eb58f43b49",
+      "results/study_l31_compact_nonlinear_bridge_result.json": "f43f5e4674f7abc2e853a542e03a6229cc7783d47ba6e7dcb8361a5727ba58fd",
+      "results/study_l31_evidence_manifest.json": "83ee5073a01437dc62051bea79eb7f55914665a45fbdfbc330474110f9558009",
+      "study_l/sources/l1_selective/94e1545b49_para_list.npy": "813cb6f586d2d5fa930b0bc062a5692dc1b2cb7a94dfbd82860dd844647f360f",
+      "study_l/sources/l1_selective/45a5d08325_para_std_list.npy": "1119ad52351df79bd5f2fd6c1f029201b38a563042006cfd4b8a1defc1f7c116",
+      "study_l/sources/l1_selective/140257c64c_x_pos.npy": "ae3d674e86f308fbef1bcd3e65d1ea94dfe2c104846bb0779ba51e2d02fd4246",
+      "study_l/sources/l1_selective/2a781ba01f_y_pos.npy": "194d819f61755f70482fd75da3b89000d5dd46c2512bca2725f1915236286516",
+      "results/study_l1_archive_member_structure.csv": "a5860a7b3e11f126de9d2cfc77520cb416b7a802150bea1546728557e53e9fe3",
+      "src/qml_microrobot/study_l30_author_cnn.py": "3d7b0f1ce42edbb0372321eb4027c4bd4a8246743c7c68dbb879bb694d88c49b",
+      "src/qml_microrobot/study_l_session.py": "449ffc341f7e4b0048597666e4cbd5d091edc36013accc35aea3d7133fee0c77",
+      "src/qml_microrobot/study_l_nv.py": "9c8eebe914aee89c9db49035ece3d8817675a537dcd5afb161bb1b508e5978f6"
+    },
+    "features_sha256": "d08cc0dfe6ae5f9343e7b022f4df0d3e671f0cbc15034f1691a21eaed794e2d9",
+    "input_shape": [
+      256,
+      24
+    ],
+    "input_rows": [
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      577,
+      578,
+      579,
+      580,
+      581,
+      582,
+      583,
+      584,
+      585,
+      586,
+      587,
+      588,
+      589,
+      590,
+      591,
+      592,
+      593,
+      594,
+      595,
+      596,
+      597,
+      598,
+      599,
+      600,
+      601,
+      602,
+      603,
+      604,
+      605,
+      606,
+      607,
+      608,
+      609,
+      610,
+      611,
+      612,
+      613,
+      614,
+      615,
+      616,
+      617,
+      618,
+      619,
+      620,
+      621,
+      622,
+      623,
+      624,
+      625,
+      626,
+      627,
+      628,
+      629,
+      630,
+      631,
+      632,
+      633,
+      634,
+      635,
+      636,
+      637,
+      638,
+      639,
+      640,
+      641,
+      642,
+      643,
+      644,
+      645,
+      646,
+      647,
+      648,
+      649,
+      650,
+      651,
+      652,
+      653,
+      654,
+      655,
+      656,
+      657,
+      658,
+      659,
+      660,
+      661,
+      662,
+      663,
+      664,
+      665,
+      666,
+      667,
+      668,
+      669,
+      670,
+      671,
+      672,
+      673,
+      674,
+      675,
+      676,
+      677,
+      678,
+      679,
+      680,
+      681,
+      682,
+      683,
+      684,
+      685,
+      686,
+      687,
+      688,
+      689,
+      690,
+      691,
+      692,
+      693,
+      694,
+      695,
+      696,
+      697,
+      698,
+      699,
+      700,
+      701,
+      702,
+      703,
+      704,
+      705,
+      706,
+      707,
+      708,
+      709,
+      710,
+      711,
+      712,
+      713,
+      714,
+      715,
+      716,
+      717,
+      718,
+      719,
+      720,
+      721,
+      722,
+      723,
+      724,
+      725,
+      726,
+      727,
+      728,
+      729,
+      730,
+      731,
+      732,
+      733,
+      734,
+      735,
+      736,
+      737,
+      738,
+      739,
+      740,
+      741,
+      742,
+      743,
+      744,
+      745,
+      746,
+      747,
+      748,
+      749,
+      750,
+      751,
+      752,
+      753,
+      754,
+      755,
+      756,
+      757,
+      758,
+      759,
+      760,
+      761,
+      762,
+      763,
+      764,
+      765,
+      766,
+      767,
+      768,
+      769,
+      770,
+      771,
+      772,
+      773,
+      774,
+      775,
+      776,
+      777,
+      778,
+      779,
+      780,
+      781,
+      782,
+      783,
+      784,
+      785,
+      786,
+      787,
+      788,
+      789,
+      790,
+      791,
+      792,
+      793,
+      794,
+      795,
+      796,
+      797,
+      798,
+      799,
+      800,
+      801,
+      802,
+      803,
+      804,
+      805,
+      806,
+      807,
+      808,
+      809,
+      810,
+      811,
+      812,
+      813,
+      814,
+      815,
+      816,
+      817,
+      818
+    ],
+    "input_scope": "All 256 historical A6-A8 replay observations, original log features.",
+    "checkpoint_scope": "L31 seed20260804 first-five-acquisition fitted states; not new matched-control fits.",
+    "validation_tolerance_um": 1e-06,
+    "prediction_checks": {
+      "cnn": {
+        "rows": [
+          {
+            "session": "2025-08-08 191042chip15 45mW",
+            "rows": 52,
+            "observed_mean_error_um": 72.25184636956035,
+            "frozen_mean_error_um": 72.25184636956035,
+            "absolute_difference_um": 0.0,
+            "single_batch256_mean_error_um": 72.25185703797317,
+            "single_batch256_minus_frozen_um": 1.0668412812719907e-05
+          },
+          {
+            "session": "2025-08-09 003340chip15 45mW",
+            "rows": 102,
+            "observed_mean_error_um": 52.94196346474148,
+            "frozen_mean_error_um": 52.94196346474148,
+            "absolute_difference_um": 0.0,
+            "single_batch256_mean_error_um": 52.94196346474148,
+            "single_batch256_minus_frozen_um": 0.0
+          },
+          {
+            "session": "2025-08-09 104618chip15 45mW",
+            "rows": 102,
+            "observed_mean_error_um": 85.41308767655958,
+            "frozen_mean_error_um": 85.41308767655958,
+            "absolute_difference_um": 0.0,
+            "single_batch256_mean_error_um": 85.41308885138706,
+            "single_batch256_minus_frozen_um": 1.1748274744149967e-06
+          }
+        ],
+        "equal_acquisition_mean_error_um": 70.20229917028713,
+        "original_per_acquisition_prediction_sha256": "247a3b95fa0b5e920ca5bd2fbf6a3ea18366a3208899576d22201c9b0b80bbd7",
+        "prediction_sha256": "ef2a238ca80437472841cc157792d072ffae2444f11c2ff1b251923aac7c0273",
+        "batch256_vs_original_max_coordinate_difference_um": 0.000244140625,
+        "batch256_numerics": "Batch256 float32 path retained separately; equivalence to frozen means is checked using original per-acquisition calls."
+      },
+      "mlp8": {
+        "rows": [
+          {
+            "session": "2025-08-08 191042chip15 45mW",
+            "rows": 52,
+            "observed_mean_error_um": 82.26195494151423,
+            "frozen_mean_error_um": 82.26195494151423,
+            "absolute_difference_um": 0.0,
+            "single_batch256_mean_error_um": 82.26195494151423,
+            "single_batch256_minus_frozen_um": 0.0
+          },
+          {
+            "session": "2025-08-09 003340chip15 45mW",
+            "rows": 102,
+            "observed_mean_error_um": 75.26329771626962,
+            "frozen_mean_error_um": 75.26329771626962,
+            "absolute_difference_um": 0.0,
+            "single_batch256_mean_error_um": 75.26329771626962,
+            "single_batch256_minus_frozen_um": 0.0
+          },
+          {
+            "session": "2025-08-09 104618chip15 45mW",
+            "rows": 102,
+            "observed_mean_error_um": 106.9255248026013,
+            "frozen_mean_error_um": 106.9255248026013,
+            "absolute_difference_um": 0.0,
+            "single_batch256_mean_error_um": 106.92552497701344,
+            "single_batch256_minus_frozen_um": 1.7441213628899277e-07
+          }
+        ],
+        "equal_acquisition_mean_error_um": 88.15025915346172,
+        "original_per_acquisition_prediction_sha256": "ab4e3199cc5a8d46200106a14eb15eba149012abf608e665cd14feb831e40780",
+        "prediction_sha256": "626d1813af95152ce3c76fe8633a10b4b1aa0485da2e0259d75a6387be56a9a3",
+        "batch256_vs_original_max_coordinate_difference_um": 3.520390782796312e-05,
+        "batch256_numerics": "Batch256 float32 path retained separately; equivalence to frozen means is checked using original per-acquisition calls."
+      }
+    },
+    "model_training_performed": false,
+    "future_data_opened": false
+  },
+  "script_sha256": "54bc54fd4ded2695ea1297e6f27f727c33c5ff0dd47920e6522a1c6073a4ce13"
+}

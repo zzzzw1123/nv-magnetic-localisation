@@ -1,0 +1,2845 @@
+{
+  "status": "COMPLETED_ALL_IMPLEMENTATIONS",
+  "started_utc": "2026-09-11T18:41:13.522109+00:00",
+  "completed_utc": "2026-09-11T18:43:03.528811+00:00",
+  "protocol": {
+    "protocol_id": "STUDY_L_L31_DEPLOYMENT_IMPLEMENTATION_COMPARISON_20260912",
+    "status_before_execution": "PREPARED_NOT_EXECUTED_WAITING_FOR_TRAINING_FINISHED_NOTICE",
+    "backends": [
+      "torch_l31",
+      "numpy_only"
+    ],
+    "models": [
+      "cnn",
+      "mlp8"
+    ],
+    "isolated_process_repeats_per_condition": 5,
+    "logical_processor": 12,
+    "processor_efficiency_class": 1,
+    "process_priority": "Normal",
+    "torch_and_blas_threads": 1,
+    "common_measurement_dependencies": [
+      "psutil",
+      "threadpoolctl",
+      "Python standard library and Windows PSAPI"
+    ],
+    "dependency_scope_note": "NumPy-only describes inference independence from Torch/sklearn; the instrumented sampling process also imports the common measurement dependencies.",
+    "input_file": "memory_input_features.npy",
+    "input_scope": "All 256 historical A6-A8 replay observations, original 24 log spectral features",
+    "batch_order_in_each_process": [
+      1,
+      256
+    ],
+    "warmup_calls_per_batch": 50,
+    "timed_calls_per_batch": 100,
+    "latency_clock": "time.perf_counter_ns",
+    "latency_scope": "One public predictor API call from prepared log features to allocated float64 x/y output, including original casts/scaling and predictor checks; excludes file loading, input-row selection, validation against the reference, and memory sampling.",
+    "batch1_timed_row_indices": "((repeat-1)*100 + call_index) % 256, call_index=0..99; both backends and models use identical row order. All 256 rows are covered across five repetitions.",
+    "batch1_warmup_row_indices": "((repeat-1)*100 - 50 + call_index) % 256, call_index=0..49",
+    "batch256_input": "The complete 256-row matrix on every call",
+    "condition_order": "Rotate [torch_l31/cnn, numpy_only/cnn, torch_l31/mlp8, numpy_only/mlp8] by repeat-1 positions",
+    "steady_snapshots_per_stage": 5,
+    "steady_snapshot_interval_seconds": 0.04,
+    "stages": [
+      "runtime_baseline",
+      "model_loaded",
+      "post_batch_1",
+      "post_batch_256"
+    ],
+    "baseline_scope": "Each implementation's actual imports, verified numeric inputs/reference, generic 8x8 float32 NumPy matrix warmup. Torch L31 also warms an 8x8 Torch matrix operation; NumPy does not import Torch. Baselines intentionally include different framework dependencies.",
+    "interpretation": "Implementation effect including dependency removal, not pure model RAM. Torch L31 imports include NumPy, Torch and scikit-learn through the original project functions; do not call the full baseline PyTorch itself.",
+    "peak_scope": "OS process-lifetime peaks include imports, loading and previous stages. Batch256 follows batch1; peaks are cumulative, never baseline-subtracted into model-only peak RAM.",
+    "signed_increments": "RSS/private-commit differences from each process baseline are retained without clipping negative values.",
+    "MiB_bytes": 1048576,
+    "numeric_tolerance_um": 0.01,
+    "numeric_gate": "Every timed output coordinate is compared against original Torch using the identical batch shape. Report all conditions and slow/failed outcomes; do not select a faster batch or backend after measurement.",
+    "training_or_model_changes": false,
+    "execution_gate": "Explicit --confirm-training-finished required after root confirms concurrent training has ended."
+  },
+  "protocol_sha256": "26006932bd3555c70207e4ef191931a8cac4adc0e6f7b7356ba9626643f2fcb1",
+  "script_sha256": "5cf522650a3fff803feb849ada0ae4f56741f722460c9732e90f905cf844eac0",
+  "memory_summary": [
+    {
+      "backend": "torch_l31",
+      "model": "cnn",
+      "stage": "runtime_baseline",
+      "rss_bytes": {
+        "five_process_values": [
+          280563712,
+          280645632,
+          280682496,
+          281321472,
+          281288704
+        ],
+        "median": 280682496,
+        "min": 280563712,
+        "max": 281321472
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          267.56640625,
+          267.64453125,
+          267.6796875,
+          268.2890625,
+          268.2578125
+        ],
+        "median": 267.6796875,
+        "min": 267.56640625,
+        "max": 268.2890625
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          307290112,
+          307314688,
+          307585024,
+          307728384,
+          308011008
+        ],
+        "median": 307585024,
+        "min": 307290112,
+        "max": 308011008
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          293.0546875,
+          293.078125,
+          293.3359375,
+          293.47265625,
+          293.7421875
+        ],
+        "median": 293.3359375,
+        "min": 293.0546875,
+        "max": 293.7421875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          281239552,
+          281616384,
+          281645056,
+          282284032,
+          282251264
+        ],
+        "median": 281645056,
+        "min": 281239552,
+        "max": 282284032
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          268.2109375,
+          268.5703125,
+          268.59765625,
+          269.20703125,
+          269.17578125
+        ],
+        "median": 268.59765625,
+        "min": 268.2109375,
+        "max": 269.20703125
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          308006912,
+          308256768,
+          308514816,
+          308703232,
+          308977664
+        ],
+        "median": 308514816,
+        "min": 308006912,
+        "max": 308977664
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          293.73828125,
+          293.9765625,
+          294.22265625,
+          294.40234375,
+          294.6640625
+        ],
+        "median": 294.22265625,
+        "min": 293.73828125,
+        "max": 294.6640625
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "backend": "torch_l31",
+      "model": "cnn",
+      "stage": "model_loaded",
+      "rss_bytes": {
+        "five_process_values": [
+          287191040,
+          287240192,
+          287268864,
+          287907840,
+          287870976
+        ],
+        "median": 287268864,
+        "min": 287191040,
+        "max": 287907840
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          273.88671875,
+          273.93359375,
+          273.9609375,
+          274.5703125,
+          274.53515625
+        ],
+        "median": 273.9609375,
+        "min": 273.88671875,
+        "max": 274.5703125
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          307597312,
+          307576832,
+          307847168,
+          307990528,
+          308273152
+        ],
+        "median": 307847168,
+        "min": 307576832,
+        "max": 308273152
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          293.34765625,
+          293.328125,
+          293.5859375,
+          293.72265625,
+          293.9921875
+        ],
+        "median": 293.5859375,
+        "min": 293.328125,
+        "max": 293.9921875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          287191040,
+          287240192,
+          287268864,
+          287907840,
+          287870976
+        ],
+        "median": 287268864,
+        "min": 287191040,
+        "max": 287907840
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          273.88671875,
+          273.93359375,
+          273.9609375,
+          274.5703125,
+          274.53515625
+        ],
+        "median": 273.9609375,
+        "min": 273.88671875,
+        "max": 274.5703125
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          310222848,
+          310239232,
+          310530048,
+          310697984,
+          310956032
+        ],
+        "median": 310530048,
+        "min": 310222848,
+        "max": 310956032
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          295.8515625,
+          295.8671875,
+          296.14453125,
+          296.3046875,
+          296.55078125
+        ],
+        "median": 296.14453125,
+        "min": 295.8515625,
+        "max": 296.55078125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          6627328,
+          6594560,
+          6586368,
+          6586368,
+          6582272
+        ],
+        "median": 6586368,
+        "min": 6582272,
+        "max": 6627328
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          6.3203125,
+          6.2890625,
+          6.28125,
+          6.28125,
+          6.27734375
+        ],
+        "median": 6.28125,
+        "min": 6.27734375,
+        "max": 6.3203125
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          307200,
+          262144,
+          262144,
+          262144,
+          262144
+        ],
+        "median": 262144,
+        "min": 262144,
+        "max": 307200
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.29296875,
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "median": 0.25,
+        "min": 0.25,
+        "max": 0.29296875
+      }
+    },
+    {
+      "backend": "torch_l31",
+      "model": "cnn",
+      "stage": "post_batch_1",
+      "rss_bytes": {
+        "five_process_values": [
+          288272384,
+          288612352,
+          288350208,
+          289021952,
+          288989184
+        ],
+        "median": 288612352,
+        "min": 288272384,
+        "max": 289021952
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          274.91796875,
+          275.2421875,
+          274.9921875,
+          275.6328125,
+          275.6015625
+        ],
+        "median": 275.2421875,
+        "min": 274.91796875,
+        "max": 275.6328125
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          307597312,
+          307851264,
+          307847168,
+          308027392,
+          308273152
+        ],
+        "median": 307851264,
+        "min": 307597312,
+        "max": 308273152
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          293.34765625,
+          293.58984375,
+          293.5859375,
+          293.7578125,
+          293.9921875
+        ],
+        "median": 293.58984375,
+        "min": 293.34765625,
+        "max": 293.9921875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          288272384,
+          288612352,
+          288350208,
+          289021952,
+          288989184
+        ],
+        "median": 288612352,
+        "min": 288272384,
+        "max": 289021952
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          274.91796875,
+          275.2421875,
+          274.9921875,
+          275.6328125,
+          275.6015625
+        ],
+        "median": 275.2421875,
+        "min": 274.91796875,
+        "max": 275.6328125
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          310222848,
+          310239232,
+          310530048,
+          310697984,
+          310956032
+        ],
+        "median": 310530048,
+        "min": 310222848,
+        "max": 310956032
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          295.8515625,
+          295.8671875,
+          296.14453125,
+          296.3046875,
+          296.55078125
+        ],
+        "median": 296.14453125,
+        "min": 295.8515625,
+        "max": 296.55078125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          7708672,
+          7966720,
+          7667712,
+          7700480,
+          7700480
+        ],
+        "median": 7700480,
+        "min": 7667712,
+        "max": 7966720
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          7.3515625,
+          7.59765625,
+          7.3125,
+          7.34375,
+          7.34375
+        ],
+        "median": 7.34375,
+        "min": 7.3125,
+        "max": 7.59765625
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          307200,
+          536576,
+          262144,
+          299008,
+          262144
+        ],
+        "median": 299008,
+        "min": 262144,
+        "max": 536576
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.29296875,
+          0.51171875,
+          0.25,
+          0.28515625,
+          0.25
+        ],
+        "median": 0.28515625,
+        "min": 0.25,
+        "max": 0.51171875
+      }
+    },
+    {
+      "backend": "torch_l31",
+      "model": "cnn",
+      "stage": "post_batch_256",
+      "rss_bytes": {
+        "five_process_values": [
+          313413632,
+          313290752,
+          314896384,
+          314437632,
+          315289600
+        ],
+        "median": 314437632,
+        "min": 313290752,
+        "max": 315289600
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          298.89453125,
+          298.77734375,
+          300.30859375,
+          299.87109375,
+          300.68359375
+        ],
+        "median": 299.87109375,
+        "min": 298.77734375,
+        "max": 300.68359375
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          313577472,
+          313810944,
+          315863040,
+          314318848,
+          315969536
+        ],
+        "median": 314318848,
+        "min": 313577472,
+        "max": 315969536
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          299.05078125,
+          299.2734375,
+          301.23046875,
+          299.7578125,
+          301.33203125
+        ],
+        "median": 299.7578125,
+        "min": 299.05078125,
+        "max": 301.33203125
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          314507264,
+          314826752,
+          314896384,
+          315232256,
+          315289600
+        ],
+        "median": 314896384,
+        "min": 314507264,
+        "max": 315289600
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          299.9375,
+          300.2421875,
+          300.30859375,
+          300.62890625,
+          300.68359375
+        ],
+        "median": 300.30859375,
+        "min": 299.9375,
+        "max": 300.68359375
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          315379712,
+          315621376,
+          315863040,
+          315777024,
+          315969536
+        ],
+        "median": 315777024,
+        "min": 315379712,
+        "max": 315969536
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          300.76953125,
+          301.0,
+          301.23046875,
+          301.1484375,
+          301.33203125
+        ],
+        "median": 301.1484375,
+        "min": 300.76953125,
+        "max": 301.33203125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          32849920,
+          32645120,
+          34213888,
+          33116160,
+          34000896
+        ],
+        "median": 33116160,
+        "min": 32645120,
+        "max": 34213888
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          31.328125,
+          31.1328125,
+          32.62890625,
+          31.58203125,
+          32.42578125
+        ],
+        "median": 31.58203125,
+        "min": 31.1328125,
+        "max": 32.62890625
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          6287360,
+          6496256,
+          8278016,
+          6590464,
+          7958528
+        ],
+        "median": 6590464,
+        "min": 6287360,
+        "max": 8278016
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          5.99609375,
+          6.1953125,
+          7.89453125,
+          6.28515625,
+          7.58984375
+        ],
+        "median": 6.28515625,
+        "min": 5.99609375,
+        "max": 7.89453125
+      }
+    },
+    {
+      "backend": "numpy_only",
+      "model": "cnn",
+      "stage": "runtime_baseline",
+      "rss_bytes": {
+        "five_process_values": [
+          36945920,
+          36753408,
+          36810752,
+          36794368,
+          36474880
+        ],
+        "median": 36794368,
+        "min": 36474880,
+        "max": 36945920
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          35.234375,
+          35.05078125,
+          35.10546875,
+          35.08984375,
+          34.78515625
+        ],
+        "median": 35.08984375,
+        "min": 34.78515625,
+        "max": 35.234375
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          57184256,
+          56729600,
+          56795136,
+          56848384,
+          56459264
+        ],
+        "median": 56795136,
+        "min": 56459264,
+        "max": 57184256
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          54.53515625,
+          54.1015625,
+          54.1640625,
+          54.21484375,
+          53.84375
+        ],
+        "median": 54.1640625,
+        "min": 53.84375,
+        "max": 54.53515625
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          38920192,
+          38932480,
+          38907904,
+          38977536,
+          38662144
+        ],
+        "median": 38920192,
+        "min": 38662144,
+        "max": 38977536
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          37.1171875,
+          37.12890625,
+          37.10546875,
+          37.171875,
+          36.87109375
+        ],
+        "median": 37.1171875,
+        "min": 36.87109375,
+        "max": 37.171875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          58384384,
+          57937920,
+          58032128,
+          58093568,
+          57655296
+        ],
+        "median": 58032128,
+        "min": 57655296,
+        "max": 58384384
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          55.6796875,
+          55.25390625,
+          55.34375,
+          55.40234375,
+          54.984375
+        ],
+        "median": 55.34375,
+        "min": 54.984375,
+        "max": 55.6796875
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "backend": "numpy_only",
+      "model": "cnn",
+      "stage": "model_loaded",
+      "rss_bytes": {
+        "five_process_values": [
+          40321024,
+          39981056,
+          40046592,
+          39886848,
+          39989248
+        ],
+        "median": 39989248,
+        "min": 39886848,
+        "max": 40321024
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          38.453125,
+          38.12890625,
+          38.19140625,
+          38.0390625,
+          38.13671875
+        ],
+        "median": 38.13671875,
+        "min": 38.0390625,
+        "max": 38.453125
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          60678144,
+          59961344,
+          60289024,
+          60018688,
+          60354560
+        ],
+        "median": 60289024,
+        "min": 59961344,
+        "max": 60678144
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          57.8671875,
+          57.18359375,
+          57.49609375,
+          57.23828125,
+          57.55859375
+        ],
+        "median": 57.49609375,
+        "min": 57.18359375,
+        "max": 57.8671875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          42348544,
+          41746432,
+          42008576,
+          42176512,
+          42016768
+        ],
+        "median": 42016768,
+        "min": 41746432,
+        "max": 42348544
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          40.38671875,
+          39.8125,
+          40.0625,
+          40.22265625,
+          40.0703125
+        ],
+        "median": 40.0703125,
+        "min": 39.8125,
+        "max": 40.38671875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          62476288,
+          61796352,
+          62066688,
+          62435328,
+          62164992
+        ],
+        "median": 62164992,
+        "min": 61796352,
+        "max": 62476288
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          59.58203125,
+          58.93359375,
+          59.19140625,
+          59.54296875,
+          59.28515625
+        ],
+        "median": 59.28515625,
+        "min": 58.93359375,
+        "max": 59.58203125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          3375104,
+          3227648,
+          3235840,
+          3092480,
+          3514368
+        ],
+        "median": 3235840,
+        "min": 3092480,
+        "max": 3514368
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          3.21875,
+          3.078125,
+          3.0859375,
+          2.94921875,
+          3.3515625
+        ],
+        "median": 3.0859375,
+        "min": 2.94921875,
+        "max": 3.3515625
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          3493888,
+          3231744,
+          3493888,
+          3170304,
+          3895296
+        ],
+        "median": 3493888,
+        "min": 3170304,
+        "max": 3895296
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          3.33203125,
+          3.08203125,
+          3.33203125,
+          3.0234375,
+          3.71484375
+        ],
+        "median": 3.33203125,
+        "min": 3.0234375,
+        "max": 3.71484375
+      }
+    },
+    {
+      "backend": "numpy_only",
+      "model": "cnn",
+      "stage": "post_batch_1",
+      "rss_bytes": {
+        "five_process_values": [
+          40603648,
+          40263680,
+          40329216,
+          40169472,
+          40271872
+        ],
+        "median": 40271872,
+        "min": 40169472,
+        "max": 40603648
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          38.72265625,
+          38.3984375,
+          38.4609375,
+          38.30859375,
+          38.40625
+        ],
+        "median": 38.40625,
+        "min": 38.30859375,
+        "max": 38.72265625
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          60678144,
+          59961344,
+          60289024,
+          60018688,
+          60354560
+        ],
+        "median": 60289024,
+        "min": 59961344,
+        "max": 60678144
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          57.8671875,
+          57.18359375,
+          57.49609375,
+          57.23828125,
+          57.55859375
+        ],
+        "median": 57.49609375,
+        "min": 57.18359375,
+        "max": 57.8671875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          42348544,
+          41746432,
+          42008576,
+          42176512,
+          42016768
+        ],
+        "median": 42016768,
+        "min": 41746432,
+        "max": 42348544
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          40.38671875,
+          39.8125,
+          40.0625,
+          40.22265625,
+          40.0703125
+        ],
+        "median": 40.0703125,
+        "min": 39.8125,
+        "max": 40.38671875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          62476288,
+          61796352,
+          62066688,
+          62435328,
+          62164992
+        ],
+        "median": 62164992,
+        "min": 61796352,
+        "max": 62476288
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          59.58203125,
+          58.93359375,
+          59.19140625,
+          59.54296875,
+          59.28515625
+        ],
+        "median": 59.28515625,
+        "min": 58.93359375,
+        "max": 59.58203125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          3657728,
+          3510272,
+          3518464,
+          3375104,
+          3796992
+        ],
+        "median": 3518464,
+        "min": 3375104,
+        "max": 3796992
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          3.48828125,
+          3.34765625,
+          3.35546875,
+          3.21875,
+          3.62109375
+        ],
+        "median": 3.35546875,
+        "min": 3.21875,
+        "max": 3.62109375
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          3493888,
+          3231744,
+          3493888,
+          3170304,
+          3895296
+        ],
+        "median": 3493888,
+        "min": 3170304,
+        "max": 3895296
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          3.33203125,
+          3.08203125,
+          3.33203125,
+          3.0234375,
+          3.71484375
+        ],
+        "median": 3.33203125,
+        "min": 3.0234375,
+        "max": 3.71484375
+      }
+    },
+    {
+      "backend": "numpy_only",
+      "model": "cnn",
+      "stage": "post_batch_256",
+      "rss_bytes": {
+        "five_process_values": [
+          40640512,
+          40263680,
+          40329216,
+          40312832,
+          40271872
+        ],
+        "median": 40312832,
+        "min": 40263680,
+        "max": 40640512
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          38.7578125,
+          38.3984375,
+          38.4609375,
+          38.4453125,
+          38.40625
+        ],
+        "median": 38.4453125,
+        "min": 38.3984375,
+        "max": 38.7578125
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          60678144,
+          59961344,
+          60289024,
+          60018688,
+          60354560
+        ],
+        "median": 60289024,
+        "min": 59961344,
+        "max": 60678144
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          57.8671875,
+          57.18359375,
+          57.49609375,
+          57.23828125,
+          57.55859375
+        ],
+        "median": 57.49609375,
+        "min": 57.18359375,
+        "max": 57.8671875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          55070720,
+          54693888,
+          54759424,
+          54743040,
+          54702080
+        ],
+        "median": 54743040,
+        "min": 54693888,
+        "max": 55070720
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          52.51953125,
+          52.16015625,
+          52.22265625,
+          52.20703125,
+          52.16796875
+        ],
+        "median": 52.20703125,
+        "min": 52.16015625,
+        "max": 52.51953125
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          75206656,
+          74489856,
+          74817536,
+          74547200,
+          74883072
+        ],
+        "median": 74817536,
+        "min": 74489856,
+        "max": 75206656
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          71.72265625,
+          71.0390625,
+          71.3515625,
+          71.09375,
+          71.4140625
+        ],
+        "median": 71.3515625,
+        "min": 71.0390625,
+        "max": 71.72265625
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          3694592,
+          3510272,
+          3518464,
+          3518464,
+          3796992
+        ],
+        "median": 3518464,
+        "min": 3510272,
+        "max": 3796992
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          3.5234375,
+          3.34765625,
+          3.35546875,
+          3.35546875,
+          3.62109375
+        ],
+        "median": 3.35546875,
+        "min": 3.34765625,
+        "max": 3.62109375
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          3493888,
+          3231744,
+          3493888,
+          3170304,
+          3895296
+        ],
+        "median": 3493888,
+        "min": 3170304,
+        "max": 3895296
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          3.33203125,
+          3.08203125,
+          3.33203125,
+          3.0234375,
+          3.71484375
+        ],
+        "median": 3.33203125,
+        "min": 3.0234375,
+        "max": 3.71484375
+      }
+    },
+    {
+      "backend": "torch_l31",
+      "model": "mlp8",
+      "stage": "runtime_baseline",
+      "rss_bytes": {
+        "five_process_values": [
+          280989696,
+          280076288,
+          281288704,
+          280403968,
+          280686592
+        ],
+        "median": 280686592,
+        "min": 280076288,
+        "max": 281288704
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          267.97265625,
+          267.1015625,
+          268.2578125,
+          267.4140625,
+          267.68359375
+        ],
+        "median": 267.68359375,
+        "min": 267.1015625,
+        "max": 268.2578125
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          307412992,
+          306798592,
+          307560448,
+          307216384,
+          307040256
+        ],
+        "median": 307216384,
+        "min": 306798592,
+        "max": 307560448
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          293.171875,
+          292.5859375,
+          293.3125,
+          292.984375,
+          292.81640625
+        ],
+        "median": 292.984375,
+        "min": 292.5859375,
+        "max": 293.3125
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          281952256,
+          281051136,
+          282247168,
+          281370624,
+          281645056
+        ],
+        "median": 281645056,
+        "min": 281051136,
+        "max": 282247168
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          268.890625,
+          268.03125,
+          269.171875,
+          268.3359375,
+          268.59765625
+        ],
+        "median": 268.59765625,
+        "min": 268.03125,
+        "max": 269.171875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          308359168,
+          307748864,
+          308527104,
+          308211712,
+          308015104
+        ],
+        "median": 308211712,
+        "min": 307748864,
+        "max": 308527104
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          294.07421875,
+          293.4921875,
+          294.234375,
+          293.93359375,
+          293.74609375
+        ],
+        "median": 293.93359375,
+        "min": 293.4921875,
+        "max": 294.234375
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "backend": "torch_l31",
+      "model": "mlp8",
+      "stage": "model_loaded",
+      "rss_bytes": {
+        "five_process_values": [
+          281399296,
+          280481792,
+          281694208,
+          280813568,
+          281100288
+        ],
+        "median": 281100288,
+        "min": 280481792,
+        "max": 281694208
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          268.36328125,
+          267.48828125,
+          268.64453125,
+          267.8046875,
+          268.078125
+        ],
+        "median": 268.078125,
+        "min": 267.48828125,
+        "max": 268.64453125
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          307412992,
+          306798592,
+          307560448,
+          307216384,
+          307040256
+        ],
+        "median": 307216384,
+        "min": 306798592,
+        "max": 307560448
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          293.171875,
+          292.5859375,
+          293.3125,
+          292.984375,
+          292.81640625
+        ],
+        "median": 292.984375,
+        "min": 292.5859375,
+        "max": 293.3125
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          281952256,
+          281051136,
+          282247168,
+          281370624,
+          281645056
+        ],
+        "median": 281645056,
+        "min": 281051136,
+        "max": 282247168
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          268.890625,
+          268.03125,
+          269.171875,
+          268.3359375,
+          268.59765625
+        ],
+        "median": 268.59765625,
+        "min": 268.03125,
+        "max": 269.171875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          308359168,
+          307748864,
+          308527104,
+          308211712,
+          308015104
+        ],
+        "median": 308211712,
+        "min": 307748864,
+        "max": 308527104
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          294.07421875,
+          293.4921875,
+          294.234375,
+          293.93359375,
+          293.74609375
+        ],
+        "median": 293.93359375,
+        "min": 293.4921875,
+        "max": 294.234375
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          409600,
+          405504,
+          405504,
+          409600,
+          413696
+        ],
+        "median": 409600,
+        "min": 405504,
+        "max": 413696
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.390625,
+          0.38671875,
+          0.38671875,
+          0.390625,
+          0.39453125
+        ],
+        "median": 0.390625,
+        "min": 0.38671875,
+        "max": 0.39453125
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "backend": "torch_l31",
+      "model": "mlp8",
+      "stage": "post_batch_1",
+      "rss_bytes": {
+        "five_process_values": [
+          282284032,
+          281165824,
+          282378240,
+          281493504,
+          281776128
+        ],
+        "median": 281776128,
+        "min": 281165824,
+        "max": 282378240
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          269.20703125,
+          268.140625,
+          269.296875,
+          268.453125,
+          268.72265625
+        ],
+        "median": 268.72265625,
+        "min": 268.140625,
+        "max": 269.296875
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          307687424,
+          306798592,
+          307560448,
+          307216384,
+          307040256
+        ],
+        "median": 307216384,
+        "min": 306798592,
+        "max": 307687424
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          293.43359375,
+          292.5859375,
+          293.3125,
+          292.984375,
+          292.81640625
+        ],
+        "median": 292.984375,
+        "min": 292.5859375,
+        "max": 293.43359375
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          282284032,
+          281165824,
+          282378240,
+          281759744,
+          281776128
+        ],
+        "median": 281776128,
+        "min": 281165824,
+        "max": 282378240
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          269.20703125,
+          268.140625,
+          269.296875,
+          268.70703125,
+          268.72265625
+        ],
+        "median": 268.72265625,
+        "min": 268.140625,
+        "max": 269.296875
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          308359168,
+          307748864,
+          308527104,
+          308211712,
+          308015104
+        ],
+        "median": 308211712,
+        "min": 307748864,
+        "max": 308527104
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          294.07421875,
+          293.4921875,
+          294.234375,
+          293.93359375,
+          293.74609375
+        ],
+        "median": 293.93359375,
+        "min": 293.4921875,
+        "max": 294.234375
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          1294336,
+          1089536,
+          1089536,
+          1089536,
+          1089536
+        ],
+        "median": 1089536,
+        "min": 1089536,
+        "max": 1294336
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          1.234375,
+          1.0390625,
+          1.0390625,
+          1.0390625,
+          1.0390625
+        ],
+        "median": 1.0390625,
+        "min": 1.0390625,
+        "max": 1.234375
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          274432,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 274432
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.26171875,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.26171875
+      }
+    },
+    {
+      "backend": "torch_l31",
+      "model": "mlp8",
+      "stage": "post_batch_256",
+      "rss_bytes": {
+        "five_process_values": [
+          282611712,
+          281710592,
+          282972160,
+          282087424,
+          282320896
+        ],
+        "median": 282320896,
+        "min": 281710592,
+        "max": 282972160
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          269.51953125,
+          268.66015625,
+          269.86328125,
+          269.01953125,
+          269.2421875
+        ],
+        "median": 269.2421875,
+        "min": 268.66015625,
+        "max": 269.86328125
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          307793920,
+          307183616,
+          307941376,
+          307597312,
+          307367936
+        ],
+        "median": 307597312,
+        "min": 307183616,
+        "max": 307941376
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          293.53515625,
+          292.953125,
+          293.67578125,
+          293.34765625,
+          293.12890625
+        ],
+        "median": 293.34765625,
+        "min": 292.953125,
+        "max": 293.67578125
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          282611712,
+          281710592,
+          282972160,
+          282087424,
+          282320896
+        ],
+        "median": 282320896,
+        "min": 281710592,
+        "max": 282972160
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          269.51953125,
+          268.66015625,
+          269.86328125,
+          269.01953125,
+          269.2421875
+        ],
+        "median": 269.2421875,
+        "min": 268.66015625,
+        "max": 269.86328125
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          308359168,
+          307748864,
+          308527104,
+          308211712,
+          308015104
+        ],
+        "median": 308211712,
+        "min": 307748864,
+        "max": 308527104
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          294.07421875,
+          293.4921875,
+          294.234375,
+          293.93359375,
+          293.74609375
+        ],
+        "median": 293.93359375,
+        "min": 293.4921875,
+        "max": 294.234375
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          1622016,
+          1634304,
+          1683456,
+          1683456,
+          1634304
+        ],
+        "median": 1634304,
+        "min": 1622016,
+        "max": 1683456
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          1.546875,
+          1.55859375,
+          1.60546875,
+          1.60546875,
+          1.55859375
+        ],
+        "median": 1.55859375,
+        "min": 1.546875,
+        "max": 1.60546875
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          380928,
+          385024,
+          380928,
+          380928,
+          327680
+        ],
+        "median": 380928,
+        "min": 327680,
+        "max": 385024
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.36328125,
+          0.3671875,
+          0.36328125,
+          0.36328125,
+          0.3125
+        ],
+        "median": 0.36328125,
+        "min": 0.3125,
+        "max": 0.3671875
+      }
+    },
+    {
+      "backend": "numpy_only",
+      "model": "mlp8",
+      "stage": "runtime_baseline",
+      "rss_bytes": {
+        "five_process_values": [
+          36757504,
+          36786176,
+          36257792,
+          36651008,
+          36691968
+        ],
+        "median": 36691968,
+        "min": 36257792,
+        "max": 36786176
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          35.0546875,
+          35.08203125,
+          34.578125,
+          34.953125,
+          34.9921875
+        ],
+        "median": 34.9921875,
+        "min": 34.578125,
+        "max": 35.08203125
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          56832000,
+          56762368,
+          56332288,
+          56827904,
+          56864768
+        ],
+        "median": 56827904,
+        "min": 56332288,
+        "max": 56864768
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          54.19921875,
+          54.1328125,
+          53.72265625,
+          54.1953125,
+          54.23046875
+        ],
+        "median": 54.1953125,
+        "min": 53.72265625,
+        "max": 54.23046875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          38932480,
+          38850560,
+          38944768,
+          38825984,
+          38875136
+        ],
+        "median": 38875136,
+        "min": 38825984,
+        "max": 38944768
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          37.12890625,
+          37.05078125,
+          37.140625,
+          37.02734375,
+          37.07421875
+        ],
+        "median": 37.07421875,
+        "min": 37.02734375,
+        "max": 37.140625
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          58073088,
+          57991168,
+          57528320,
+          58036224,
+          58118144
+        ],
+        "median": 58036224,
+        "min": 57528320,
+        "max": 58118144
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          55.3828125,
+          55.3046875,
+          54.86328125,
+          55.34765625,
+          55.42578125
+        ],
+        "median": 55.34765625,
+        "min": 54.86328125,
+        "max": 55.42578125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "backend": "numpy_only",
+      "model": "mlp8",
+      "stage": "model_loaded",
+      "rss_bytes": {
+        "five_process_values": [
+          36769792,
+          36798464,
+          36270080,
+          36663296,
+          36704256
+        ],
+        "median": 36704256,
+        "min": 36270080,
+        "max": 36798464
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          35.06640625,
+          35.09375,
+          34.58984375,
+          34.96484375,
+          35.00390625
+        ],
+        "median": 35.00390625,
+        "min": 34.58984375,
+        "max": 35.09375
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          56832000,
+          56762368,
+          56332288,
+          56827904,
+          56864768
+        ],
+        "median": 56827904,
+        "min": 56332288,
+        "max": 56864768
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          54.19921875,
+          54.1328125,
+          53.72265625,
+          54.1953125,
+          54.23046875
+        ],
+        "median": 54.1953125,
+        "min": 53.72265625,
+        "max": 54.23046875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          38932480,
+          38850560,
+          38944768,
+          38825984,
+          38875136
+        ],
+        "median": 38875136,
+        "min": 38825984,
+        "max": 38944768
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          37.12890625,
+          37.05078125,
+          37.140625,
+          37.02734375,
+          37.07421875
+        ],
+        "median": 37.07421875,
+        "min": 37.02734375,
+        "max": 37.140625
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          58073088,
+          57991168,
+          57528320,
+          58036224,
+          58118144
+        ],
+        "median": 58036224,
+        "min": 57528320,
+        "max": 58118144
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          55.3828125,
+          55.3046875,
+          54.86328125,
+          55.34765625,
+          55.42578125
+        ],
+        "median": 55.34765625,
+        "min": 54.86328125,
+        "max": 55.42578125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          12288,
+          12288,
+          12288,
+          12288,
+          12288
+        ],
+        "median": 12288,
+        "min": 12288,
+        "max": 12288
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.01171875,
+          0.01171875,
+          0.01171875,
+          0.01171875,
+          0.01171875
+        ],
+        "median": 0.01171875,
+        "min": 0.01171875,
+        "max": 0.01171875
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "backend": "numpy_only",
+      "model": "mlp8",
+      "stage": "post_batch_1",
+      "rss_bytes": {
+        "five_process_values": [
+          36835328,
+          36864000,
+          36335616,
+          36728832,
+          36769792
+        ],
+        "median": 36769792,
+        "min": 36335616,
+        "max": 36864000
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          35.12890625,
+          35.15625,
+          34.65234375,
+          35.02734375,
+          35.06640625
+        ],
+        "median": 35.06640625,
+        "min": 34.65234375,
+        "max": 35.15625
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          56832000,
+          56762368,
+          56332288,
+          56827904,
+          56864768
+        ],
+        "median": 56827904,
+        "min": 56332288,
+        "max": 56864768
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          54.19921875,
+          54.1328125,
+          53.72265625,
+          54.1953125,
+          54.23046875
+        ],
+        "median": 54.1953125,
+        "min": 53.72265625,
+        "max": 54.23046875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          38932480,
+          38850560,
+          38944768,
+          38825984,
+          38875136
+        ],
+        "median": 38875136,
+        "min": 38825984,
+        "max": 38944768
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          37.12890625,
+          37.05078125,
+          37.140625,
+          37.02734375,
+          37.07421875
+        ],
+        "median": 37.07421875,
+        "min": 37.02734375,
+        "max": 37.140625
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          58073088,
+          57991168,
+          57528320,
+          58036224,
+          58118144
+        ],
+        "median": 58036224,
+        "min": 57528320,
+        "max": 58118144
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          55.3828125,
+          55.3046875,
+          54.86328125,
+          55.34765625,
+          55.42578125
+        ],
+        "median": 55.34765625,
+        "min": 54.86328125,
+        "max": 55.42578125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          77824,
+          77824,
+          77824,
+          77824,
+          77824
+        ],
+        "median": 77824,
+        "min": 77824,
+        "max": 77824
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.07421875,
+          0.07421875,
+          0.07421875,
+          0.07421875,
+          0.07421875
+        ],
+        "median": 0.07421875,
+        "min": 0.07421875,
+        "max": 0.07421875
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "backend": "numpy_only",
+      "model": "mlp8",
+      "stage": "post_batch_256",
+      "rss_bytes": {
+        "five_process_values": [
+          36847616,
+          36868096,
+          36339712,
+          36876288,
+          36773888
+        ],
+        "median": 36847616,
+        "min": 36339712,
+        "max": 36876288
+      },
+      "rss_MiB": {
+        "five_process_values": [
+          35.140625,
+          35.16015625,
+          34.65625,
+          35.16796875,
+          35.0703125
+        ],
+        "median": 35.140625,
+        "min": 34.65625,
+        "max": 35.16796875
+      },
+      "private_commit_bytes": {
+        "five_process_values": [
+          56832000,
+          56762368,
+          56332288,
+          56827904,
+          56864768
+        ],
+        "median": 56827904,
+        "min": 56332288,
+        "max": 56864768
+      },
+      "private_commit_MiB": {
+        "five_process_values": [
+          54.19921875,
+          54.1328125,
+          53.72265625,
+          54.1953125,
+          54.23046875
+        ],
+        "median": 54.1953125,
+        "min": 53.72265625,
+        "max": 54.23046875
+      },
+      "process_lifetime_peak_rss_bytes": {
+        "five_process_values": [
+          38932480,
+          38850560,
+          38944768,
+          38825984,
+          38875136
+        ],
+        "median": 38875136,
+        "min": 38825984,
+        "max": 38944768
+      },
+      "process_lifetime_peak_rss_MiB": {
+        "five_process_values": [
+          37.12890625,
+          37.05078125,
+          37.140625,
+          37.02734375,
+          37.07421875
+        ],
+        "median": 37.07421875,
+        "min": 37.02734375,
+        "max": 37.140625
+      },
+      "process_lifetime_peak_commit_bytes": {
+        "five_process_values": [
+          58073088,
+          57991168,
+          57528320,
+          58036224,
+          58118144
+        ],
+        "median": 58036224,
+        "min": 57528320,
+        "max": 58118144
+      },
+      "process_lifetime_peak_commit_MiB": {
+        "five_process_values": [
+          55.3828125,
+          55.3046875,
+          54.86328125,
+          55.34765625,
+          55.42578125
+        ],
+        "median": 55.34765625,
+        "min": 54.86328125,
+        "max": 55.42578125
+      },
+      "rss_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          90112,
+          81920,
+          81920,
+          225280,
+          81920
+        ],
+        "median": 81920,
+        "min": 81920,
+        "max": 225280
+      },
+      "rss_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0859375,
+          0.078125,
+          0.078125,
+          0.21484375,
+          0.078125
+        ],
+        "median": 0.078125,
+        "min": 0.078125,
+        "max": 0.21484375
+      },
+      "private_commit_increment_from_runtime_baseline_bytes": {
+        "five_process_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "private_commit_increment_from_runtime_baseline_MiB": {
+        "five_process_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    }
+  ],
+  "latency_summary": [
+    {
+      "backend": "torch_l31",
+      "model": "cnn",
+      "batch_size": 1,
+      "timed_calls_per_process": 100,
+      "five_process_median_latency_ns": [
+        243900.0,
+        260000.0,
+        240300.0,
+        228100.0,
+        228250.0
+      ],
+      "median_latency_us": 240.3,
+      "range_of_process_medians_us": [
+        228.1,
+        260.0
+      ],
+      "median_us_per_prediction": 240.3,
+      "all_raw_call_range_ns": [
+        212100,
+        811800
+      ],
+      "numeric_gate_passed": true,
+      "max_abs_coordinate_difference_um": 0.0
+    },
+    {
+      "backend": "torch_l31",
+      "model": "cnn",
+      "batch_size": 256,
+      "timed_calls_per_process": 100,
+      "five_process_median_latency_ns": [
+        17740250.0,
+        18545900.0,
+        16425950.0,
+        16444700.0,
+        14167950.0
+      ],
+      "median_latency_us": 16444.7,
+      "range_of_process_medians_us": [
+        14167.95,
+        18545.9
+      ],
+      "median_us_per_prediction": 64.237109375,
+      "all_raw_call_range_ns": [
+        13540500,
+        40460600
+      ],
+      "numeric_gate_passed": true,
+      "max_abs_coordinate_difference_um": 0.0
+    },
+    {
+      "backend": "numpy_only",
+      "model": "cnn",
+      "batch_size": 1,
+      "timed_calls_per_process": 100,
+      "five_process_median_latency_ns": [
+        317250.0,
+        367700.0,
+        257200.0,
+        263000.0,
+        257700.0
+      ],
+      "median_latency_us": 263.0,
+      "range_of_process_medians_us": [
+        257.2,
+        367.7
+      ],
+      "median_us_per_prediction": 263.0,
+      "all_raw_call_range_ns": [
+        245700,
+        530400
+      ],
+      "numeric_gate_passed": true,
+      "max_abs_coordinate_difference_um": 0.00048828125
+    },
+    {
+      "backend": "numpy_only",
+      "model": "cnn",
+      "batch_size": 256,
+      "timed_calls_per_process": 100,
+      "five_process_median_latency_ns": [
+        46382450.0,
+        52668700.0,
+        40421500.0,
+        35842500.0,
+        34430750.0
+      ],
+      "median_latency_us": 40421.5,
+      "range_of_process_medians_us": [
+        34430.75,
+        52668.7
+      ],
+      "median_us_per_prediction": 157.896484375,
+      "all_raw_call_range_ns": [
+        32957500,
+        108109400
+      ],
+      "numeric_gate_passed": true,
+      "max_abs_coordinate_difference_um": 0.00048828125
+    },
+    {
+      "backend": "torch_l31",
+      "model": "mlp8",
+      "batch_size": 1,
+      "timed_calls_per_process": 100,
+      "five_process_median_latency_ns": [
+        47350.0,
+        43600.0,
+        43750.0,
+        72950.0,
+        56250.0
+      ],
+      "median_latency_us": 47.35,
+      "range_of_process_medians_us": [
+        43.6,
+        72.95
+      ],
+      "median_us_per_prediction": 47.35,
+      "all_raw_call_range_ns": [
+        38700,
+        206400
+      ],
+      "numeric_gate_passed": true,
+      "max_abs_coordinate_difference_um": 0.0
+    },
+    {
+      "backend": "torch_l31",
+      "model": "mlp8",
+      "batch_size": 256,
+      "timed_calls_per_process": 100,
+      "five_process_median_latency_ns": [
+        72850.0,
+        66700.0,
+        61700.0,
+        76650.0,
+        60000.0
+      ],
+      "median_latency_us": 66.7,
+      "range_of_process_medians_us": [
+        60.0,
+        76.65
+      ],
+      "median_us_per_prediction": 0.260546875,
+      "all_raw_call_range_ns": [
+        56500,
+        416900
+      ],
+      "numeric_gate_passed": true,
+      "max_abs_coordinate_difference_um": 0.0
+    },
+    {
+      "backend": "numpy_only",
+      "model": "mlp8",
+      "batch_size": 1,
+      "timed_calls_per_process": 100,
+      "five_process_median_latency_ns": [
+        11200.0,
+        7600.0,
+        7700.0,
+        8200.0,
+        18400.0
+      ],
+      "median_latency_us": 8.2,
+      "range_of_process_medians_us": [
+        7.6,
+        18.4
+      ],
+      "median_us_per_prediction": 8.2,
+      "all_raw_call_range_ns": [
+        7300,
+        456300
+      ],
+      "numeric_gate_passed": true,
+      "max_abs_coordinate_difference_um": 0.0001760195382303209
+    },
+    {
+      "backend": "numpy_only",
+      "model": "mlp8",
+      "batch_size": 256,
+      "timed_calls_per_process": 100,
+      "five_process_median_latency_ns": [
+        35000.0,
+        48850.0,
+        27300.0,
+        26700.0,
+        26900.0
+      ],
+      "median_latency_us": 27.3,
+      "range_of_process_medians_us": [
+        26.7,
+        48.85
+      ],
+      "median_us_per_prediction": 0.106640625,
+      "all_raw_call_range_ns": [
+        25000,
+        461200
+      ],
+      "numeric_gate_passed": true,
+      "max_abs_coordinate_difference_um": 0.00024642735365887347
+    }
+  ],
+  "isolated_process_count": 20,
+  "memory_snapshots": 400,
+  "raw_timed_calls": 4000,
+  "all_conditions_reported": true,
+  "training_performed": false,
+  "original_L31_Torch_dependency_baseline_includes_sklearn": true,
+  "interpretation": "Dependency-inclusive implementation comparison, not pure model RAM, PyTorch-only footprint, or MCU deployment.",
+  "source_check": {
+    "protocol_sha256": "26006932bd3555c70207e4ef191931a8cac4adc0e6f7b7356ba9626643f2fcb1",
+    "input_sha256": "d08cc0dfe6ae5f9343e7b022f4df0d3e671f0cbc15034f1691a21eaed794e2d9",
+    "portable_proof_sha256": "b10ff4f970b86f100de067ca0a57cc8c5b6c25de2b0af7142d317a833af55627",
+    "checkpoint_sha256": {
+      "checkpoints/study_l31_author_first5.pt": "50f40ae12a7d46aa7db132fccef6a4b6b445c841ed517752a8d65c6b917da508",
+      "checkpoints/study_l31_selected_compact.pkl": "bbe58dd0e7518f63511dcbc00449ab01a29e1eefc66fbfcbebda7e18d2826af6",
+      "checkpoints/study_l31_author_first5.json": "3b1e8b34a92eff94d4c81e3528fc091654a3978655ca95200a824d015af597ac",
+      "src/qml_microrobot/study_l31_compact.py": "e129d1abe402844d1835b86385782b3872524da53a4390af0ab235c2620cc53c",
+      "scripts/run_study_l31_compact_nonlinear_bridge.py": "ec4ebf5221a79df40ae632515e23b5a8433074fc8a9a09a545ff85fa37820809",
+      "results/study_l31_compact_replay_rows.csv": "9d9055400ced873e461e97b551252d4aca1d6406f5cab4cb0fac7615cd8992ba",
+      "results/study_l31_compact_resource.csv": "11e13a6e630c6e3eb9eaecdd72bb39fbacd223c8cc31029cd9bd90eb58f43b49",
+      "results/study_l31_compact_nonlinear_bridge_result.json": "f43f5e4674f7abc2e853a542e03a6229cc7783d47ba6e7dcb8361a5727ba58fd",
+      "results/study_l31_evidence_manifest.json": "83ee5073a01437dc62051bea79eb7f55914665a45fbdfbc330474110f9558009"
+    },
+    "export_models": {
+      "cnn": {
+        "checkpoint_path": "checkpoints/study_l31_author_first5.pt",
+        "checkpoint_sha256": "50f40ae12a7d46aa7db132fccef6a4b6b445c841ed517752a8d65c6b917da508",
+        "export_npz_sha256": "22fe11db83aa504febe4b45e86f36d4dd2b8400091b5fafa4e14de898d8c31ca",
+        "export_npz_bytes": 2890514,
+        "parameter_count": 721858,
+        "export_arrays_exact_to_fitted_state": true,
+        "arrays": {
+          "conv1_weight": {
+            "shape": [
+              64,
+              1,
+              3
+            ],
+            "dtype": "float32",
+            "sha256": "e85af802f8f9acccaddf49642cfe694a876e687c9323db6f11e5f342a5cee625"
+          },
+          "conv1_bias": {
+            "shape": [
+              64
+            ],
+            "dtype": "float32",
+            "sha256": "2b2b6c54813ee13e82dc62d06bc35dda55e020e5819b8509b06a8acd854548ea"
+          },
+          "conv2_weight": {
+            "shape": [
+              128,
+              64,
+              3
+            ],
+            "dtype": "float32",
+            "sha256": "0c5eaf0ba1712280ca3122ef8d4ba3a85b805eebeede3f6e83b8e52f9d863a48"
+          },
+          "conv2_bias": {
+            "shape": [
+              128
+            ],
+            "dtype": "float32",
+            "sha256": "eec618fe281d85858e827e8d359a3bd9ce5c83521a989841f67bc75ccfa5adb8"
+          },
+          "conv3_weight": {
+            "shape": [
+              256,
+              128,
+              3
+            ],
+            "dtype": "float32",
+            "sha256": "b61b6d207b1be3146c42398c85750a7d9f999eb0b2e4a038cc406cfee9934d0a"
+          },
+          "conv3_bias": {
+            "shape": [
+              256
+            ],
+            "dtype": "float32",
+            "sha256": "d162ddd547895487cfdd897a7e6f1e92ad939c9eec6b93607a11c3ca88ee3495"
+          },
+          "dense1_weight": {
+            "shape": [
+              128,
+              4608
+            ],
+            "dtype": "float32",
+            "sha256": "32db92f879097270b00cfd24e368780ec8f7c2a509b85cf4960edf0ea3fb0740"
+          },
+          "dense1_bias": {
+            "shape": [
+              128
+            ],
+            "dtype": "float32",
+            "sha256": "5349a4b346dcb3dae6fab9fb55ab1a3f7fe98e22900774b619f1b22b44de5697"
+          },
+          "dense2_weight": {
+            "shape": [
+              64,
+              128
+            ],
+            "dtype": "float32",
+            "sha256": "e8448d2538f85403a4667ac8e9517406524ccfbce332ec68e205589d125ea20a"
+          },
+          "dense2_bias": {
+            "shape": [
+              64
+            ],
+            "dtype": "float32",
+            "sha256": "e62554c9f8f4e1cb6be2e4658da93a183ad97c469c1bc48c5d72130c30afb264"
+          },
+          "dense3_weight": {
+            "shape": [
+              2,
+              64
+            ],
+            "dtype": "float32",
+            "sha256": "c61e685750b06b96c811925d40df3daa96a5f9c178f4930f4897f0600cb1aa5e"
+          },
+          "dense3_bias": {
+            "shape": [
+              2
+            ],
+            "dtype": "float32",
+            "sha256": "7f5f8500c998c866cfde42a5eecc373afb91bfde0d5ada9a1b93ad457221d11e"
+          }
+        }
+      },
+      "mlp8": {
+        "checkpoint_path": "checkpoints/study_l31_selected_compact.pkl",
+        "checkpoint_sha256": "bbe58dd0e7518f63511dcbc00449ab01a29e1eefc66fbfcbebda7e18d2826af6",
+        "export_npz_sha256": "17abdfe432cdc4dbea16c4e6593bedafc0b5795157fd216389d836d7c4518352",
+        "export_npz_bytes": 3358,
+        "parameter_count": 218,
+        "export_arrays_exact_to_fitted_state": true,
+        "arrays": {
+          "dense1_weight": {
+            "shape": [
+              8,
+              24
+            ],
+            "dtype": "float32",
+            "sha256": "de68f2bf413066d6cac5f5902b208c32c89c1504165ff1ae8496edee76c8cd9b"
+          },
+          "dense1_bias": {
+            "shape": [
+              8
+            ],
+            "dtype": "float32",
+            "sha256": "b7cf2984e643cd5e49e152e1f83da9dc74e5a875186bca4fb7dd1b50e7bfc2f2"
+          },
+          "dense2_weight": {
+            "shape": [
+              2,
+              8
+            ],
+            "dtype": "float32",
+            "sha256": "54154b06f31188c220b21ac31ddab5f912fcee10fdf2f9ede2f497b9c8541fd7"
+          },
+          "dense2_bias": {
+            "shape": [
+              2
+            ],
+            "dtype": "float32",
+            "sha256": "93711435930e04f27ccc70fa3d83522961c139dce1726c69abaa7a27c5333bed"
+          },
+          "feature_mean": {
+            "shape": [
+              24
+            ],
+            "dtype": "float64",
+            "sha256": "17aeda640dd23c09903a29f20ae557f89d66bce3c48fcc6a289cee746058582f"
+          },
+          "feature_scale": {
+            "shape": [
+              24
+            ],
+            "dtype": "float64",
+            "sha256": "299da0ca86541f637dbd0cc69db8646aa9f19c1bf69e37a87c40fcf81678e38e"
+          },
+          "target_mean": {
+            "shape": [
+              2
+            ],
+            "dtype": "float64",
+            "sha256": "9f259419a10a14a5c35a349d44501c34bc4484875309f940a9ae0b83b55f8f14"
+          },
+          "target_scale": {
+            "shape": [
+              2
+            ],
+            "dtype": "float64",
+            "sha256": "578f54ddee5cd328ec9f2ff8aca5f1872c0b63468efb561dfa26ea40ed06e5e8"
+          }
+        }
+      }
+    }
+  }
+}

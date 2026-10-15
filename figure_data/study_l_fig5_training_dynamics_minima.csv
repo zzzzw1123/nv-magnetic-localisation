@@ -1,0 +1,5 @@
+model,schedule,epoch,validation_mse,record_count
+architecture_matched_cnn,fixed_lr_0.005,2041,617.9259033203125,301
+architecture_matched_cnn,cosine_annealing,2461,573.7506713867188,301
+mlp8,fixed_lr_0.005,1331,0.02529996819794178,151
+mlp8,cosine_annealing,431,0.02621600776910782,151
