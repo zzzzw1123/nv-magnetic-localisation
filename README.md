@@ -1,4 +1,4 @@
-# NV magnetic-sensing benchmarks
+# NV magnetic-localisation benchmarks
 
 Code for comparing CNN and compact MLP regressors on the Weng NV-array dataset,
 evaluating standardisation on the Meneses elevator dataset, and measuring CPU
@@ -7,7 +7,6 @@ inference latency and process memory with PyTorch, NumPy and ONNX Runtime.
 This repository accompanies *Beyond Parameter Counts: Standardisation, Nested Model
 Selection, and Inference Backends in Neural Regression for NV Magnetic Localisation*.
 Version v1.0.0 identifies the code and result records distributed with this study.
-The software citation in CITATION.cff is separate from the manuscript author list.
 
 ## Quick start
 

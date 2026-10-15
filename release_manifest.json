@@ -245,8 +245,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "3d5a3f1e6a0eb8048d7ceee6d98ccc14fad3c9cbf832a22654bf568850107c84",
-      "bytes": 12739,
+      "sha256": "0d7397d3567b8dfc8dc2cbe1e283bd4bfeac6616856af4528646b78e985deb80",
+      "bytes": 12661,
       "role": "documentation_or_environment",
       "license": "MIT"
     },
