@@ -7,6 +7,8 @@ inference latency and process memory with PyTorch, NumPy and ONNX Runtime.
 This repository accompanies *Beyond Parameter Counts: Standardisation, Nested Model
 Selection, and Inference Backends in Neural Regression for NV Magnetic Localisation*.
 Version v1.0.0 identifies the code and result records distributed with this study.
+The versioned source and results archives are preserved in
+[Zenodo](https://doi.org/10.5281/zenodo.23402428).
 
 ## Quick start
 
@@ -183,7 +185,8 @@ recipe table are distributed in the nv-results-v1.0.0.zip asset of
 Run the quick-start download command once after cloning, or download the asset
 separately and pass its path with --archive. All other manifest files are tracked
 in Git. Original datasets retain the source licences; generated predictions use
-CC BY 4.0. A Zenodo DOI has not yet been assigned.
+CC BY 4.0. Both archives are also available from the
+[Zenodo v1.0.0 record](https://doi.org/10.5281/zenodo.23402428).
 
 ## NumPy inference example
 

@@ -6,6 +6,7 @@ authors:
   - family-names: Zhu
     given-names: Haowen
 version: 1.0.0
+doi: "10.5281/zenodo.23402428"
 date-released: 2026-10-16
 repository-code: "https://github.com/zzzzw1123/nv-magnetic-localisation"
 url: "https://github.com/zzzzw1123/nv-magnetic-localisation/releases/tag/v1.0.0"

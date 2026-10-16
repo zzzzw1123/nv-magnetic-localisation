@@ -26,7 +26,7 @@
     }
   ],
   "notes": [
-    "Repository: https://github.com/zzzzw1123/nv-magnetic-localisation. The v1.0.0 release provides the two large prediction tables as a separate checksum-verified attachment. A Zenodo DOI has not been assigned.",
+    "Repository: https://github.com/zzzzw1123/nv-magnetic-localisation. The v1.0.0 release provides the two large prediction tables as a separate checksum-verified attachment. The versioned source and results archives are preserved at https://doi.org/10.5281/zenodo.23402428.",
     "Public source files have revised comments and documentation. execution_sources/ retains the byte-identical source versions identified by the experiment records.",
     "Source measurements retain their original licences. New predictions, summaries, feature arrays, model states and figure source tables use CC BY 4.0.",
     "Recorded protocols and results retain their original fields and checksums, including execution-stage metadata. The README describes the current entry points.",
@@ -231,8 +231,8 @@
     },
     {
       "path": "CITATION.cff",
-      "sha256": "54443c46948d54e22039ef72a34bd5c2ef2b8d89aace9e9c3ff70a1cc8e2bfca",
-      "bytes": 468,
+      "sha256": "1d527a420a246de46db28fc88890535015c26c5872ac5ad8e6119b7e31424b73",
+      "bytes": 499,
       "role": "software_citation",
       "license": "MIT"
     },
@@ -245,8 +245,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "0d7397d3567b8dfc8dc2cbe1e283bd4bfeac6616856af4528646b78e985deb80",
-      "bytes": 12661,
+      "sha256": "6fcfbd7a9938a00ca074fa1d075a9087944de22ade2206553d5096fbf496cb67",
+      "bytes": 12838,
       "role": "documentation_or_environment",
       "license": "MIT"
     },
